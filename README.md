@@ -71,8 +71,9 @@ riscv64-unknown-elf-gcc-objdump -d sum1ton.o | less
 * Os: Optimize for size (reduces the binary size).
 * Ofast: Enables -O3 and makes other aggressive optimizations.
 
-##Results
-Number of instructions
+## Results
+#### Number of instructions
 O1 - Hex(101c0 - 10184) / 4  = 15
+<br>
 Ofast - Hex(100e0 - 100b0) / 4 = 12
 
