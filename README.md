@@ -49,7 +49,7 @@ riscv64-unknown-elf-gcc-objdump -d sum1ton.o
 riscv64-unknown-elf-gcc-objdump -d sum1ton.o | less
 ```
 ![Screenshot 2024-08-07 120249](https://github.com/user-attachments/assets/3db61ddd-a61a-4595-aebe-8dc4ae187c3c)
-
+* Search the main function using '/main' command and calculate the number of instructions in the main function (
 ![Screenshot 2024-08-07 120355](https://github.com/user-attachments/assets/76c1b21d-2e1f-461d-a216-db83c1766f59)
 ![Screenshot 2024-08-07 120950](https://github.com/user-attachments/assets/63d2f3a5-2cad-4c06-ad02-25d0e0a67fbb)
 ![Screenshot 2024-08-07 120940](https://github.com/user-attachments/assets/9382c43e-df1c-4620-9292-0af168b46677)
