@@ -99,8 +99,24 @@ spike pk sum1ton.c
 
 * The following command is used to debug the code with the Spike simulator.
 ```c
-spike pk -d sum1ton.c
+spike -d pk sum1ton.c
 ```
+![2](https://github.com/user-attachments/assets/94744f80-3011-431c-b1f4-426090b922ed)
+
+* The command tells the simulator to execute the program until the program counter reaches the address 0x100b0.
+```c
+until pc 0 100b0
+```
+![3](https://github.com/user-attachments/assets/638b5b02-a3aa-4041-b432-ed1f1a483661)
+
+* The command checks the contents in the register a2
+```c
+reg 0 a2
+```
+* Checking the value of the a2 register before and after the instruction is executed.
+![4](https://github.com/user-attachments/assets/cedbf998-feeb-46b4-8ad0-55da3f5fb3ce)
+
+
 
 
 
