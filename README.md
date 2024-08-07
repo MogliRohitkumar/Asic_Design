@@ -114,9 +114,17 @@ until pc 0 100b0
 reg 0 a2
 ```
 * Checking the value of the a2 register before and after the instruction is executed.
+
 ![4](https://github.com/user-attachments/assets/cedbf998-feeb-46b4-8ad0-55da3f5fb3ce)
 
+* lui a2, 0X1 command adds the registor a2 value by 0X1.
 
+* Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
+* Run the same commands as the above (same as we checked the lui command)
+
+![5](https://github.com/user-attachments/assets/7a1c5df1-8a29-4c7d-a99c-98f5ad0c1aed)
+
+* The sp pointer gets updated from 0X0000003ffffffb50 to 0X0000003ffffffb40.
 
 
 
