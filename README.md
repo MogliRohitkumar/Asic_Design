@@ -1,7 +1,9 @@
 # Asic_Design 
-LAB - 1
+## LAB - 1
+### Part-1(GCC complier)
 
 ![Screenshot 2024-08-07 113637](https://github.com/user-attachments/assets/89f102e1-9d20-45a5-abdd-591007d3050d)
+![Screenshot 2024-08-07 121644](https://github.com/user-attachments/assets/f4700587-18e7-482b-a2a2-417950ed741e)
 ![Screenshot 2024-08-07 114912](https://github.com/user-attachments/assets/40ae6bef-cda0-44ae-bd08-c0a3c37d23ba)
 ![Screenshot 2024-08-07 115123](https://github.com/user-attachments/assets/5a0a6997-000d-4f62-9a64-7cf593c693c1)
 ![Screenshot 2024-08-07 115510](https://github.com/user-attachments/assets/517c6af6-c981-4e76-af81-2aad5ac42f13)
