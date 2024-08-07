@@ -29,7 +29,9 @@ gcc sum1ton.c
 ./a.out
 ```
 ![Screenshot 2024-08-07 114912](https://github.com/user-attachments/assets/40ae6bef-cda0-44ae-bd08-c0a3c37d23ba)
+* Output of the C program that processes numbers from 1 to 69
 ![Screenshot 2024-08-07 115123](https://github.com/user-attachments/assets/5a0a6997-000d-4f62-9a64-7cf593c693c1)
+* Result of the C program after changing the value of n to 96
 ![Screenshot 2024-08-07 115510](https://github.com/user-attachments/assets/517c6af6-c981-4e76-af81-2aad5ac42f13)
 
 
