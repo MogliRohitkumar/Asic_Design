@@ -57,6 +57,7 @@ riscv64-unknown-elf-gcc-objdump -d sum1ton.o | less
 /main
 ```
 ![Screenshot 2024-08-07 120355](https://github.com/user-attachments/assets/76c1b21d-2e1f-461d-a216-db83c1766f59)
+
 **Using Ofast**
 * Executing the same commands with optimization levels O1 through Ofast as well.
 ![Screenshot 2024-08-07 120950](https://github.com/user-attachments/assets/63d2f3a5-2cad-4c06-ad02-25d0e0a67fbb)
