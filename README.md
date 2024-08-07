@@ -63,3 +63,16 @@ riscv64-unknown-elf-gcc-objdump -d sum1ton.o | less
 ![Screenshot 2024-08-07 120950](https://github.com/user-attachments/assets/63d2f3a5-2cad-4c06-ad02-25d0e0a67fbb)
 
 ![Screenshot 2024-08-07 120940](https://github.com/user-attachments/assets/9382c43e-df1c-4620-9292-0af168b46677)
+
+* O0: No optimization (default setting).
+* O1: Basic optimization (minimal level).
+* O2: More optimization (increases code performance and reduces code size).
+* O3: Aggressive optimization (may increase compilation time and code size but maximizes performance).
+* Os: Optimize for size (reduces the binary size).
+* Ofast: Enables -O3 and makes other aggressive optimizations.
+
+##Results
+Number of instructions
+O1 - Hex(101c0 - 10184) / 4  = 15
+Ofast - Hex(100e0 - 100b0) / 4 = 12
+
