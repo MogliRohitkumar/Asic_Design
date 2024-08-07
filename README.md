@@ -37,6 +37,7 @@ gcc sum1ton.c
 ![Screenshot 2024-08-07 115510](https://github.com/user-attachments/assets/517c6af6-c981-4e76-af81-2aad5ac42f13)
 
 ### Part-2(RISC-V 64bit)
+**Using basic level O1** 
 * This command compiles a C source file (sum1ton.c) for the 64-bit RISC-V architecture, generating an object file (sum1ton.o). It optimizes the code at the basic level ('O1')
 #### Command
 ```c
