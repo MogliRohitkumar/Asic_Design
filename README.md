@@ -1,5 +1,9 @@
 # Asic_Design 
 ## LAB - 1
+### Objective
+* Calculating the sum of numbers from 1 to n using GCC compiler and RISC-V 64-bit architecture
+* Comparing O1 and Ofast optimization
+
 ### Part-1(GCC compiler)
 * Create .c file using nano text editor
 #### Command
