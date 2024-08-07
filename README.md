@@ -1,13 +1,12 @@
 # Asic_Design 
 ## LAB - 1
 ### Part-1(GCC compiler)
-* Create .c file using leafpad text editor
+* Create .c file using nano text editor
 #### Command
 ```c
-leafpad sum1ton.c &
+nano sum1ton.c 
 ```
-![Screenshot 2024-08-07 144016](https://github.com/user-attachments/assets/db98f086-c854-4483-ae81-d0d9d83d7fd3)
-
+![Screenshot 2024-08-07 182350](https://github.com/user-attachments/assets/5f927c5e-3919-45e4-8a33-0b55a5df7f6f)
 
 * Code of C program which calculates the sum of numbers from 1 to n 
 ```c
