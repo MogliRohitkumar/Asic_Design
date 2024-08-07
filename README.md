@@ -1,9 +1,13 @@
 # Asic_Design 
 ## LAB - 1
 ### Part-1(GCC compiler)
-* Create .c file using nano text editor 
+* Create .c file using nano text editor
+#### Command
+```c
+nano sum1ton.c
+```
 ![Screenshot 2024-08-07 113637](https://github.com/user-attachments/assets/89f102e1-9d20-45a5-abdd-591007d3050d)
-
+* Code of C program which calculates the sum of numbers from 1 to n 
 ```c
 #include <stdio.h>
 
