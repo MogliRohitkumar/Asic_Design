@@ -76,4 +76,5 @@ riscv64-unknown-elf-gcc-objdump -d sum1ton.o | less
 O1 - Hex(101c0 - 10184) / 4  = 15
 <br>
 Ofast - Hex(100e0 - 100b0) / 4 = 12
-
+<br> 
+The number of instructions decreases with Ofast due to aggressive optimization, but this may lead to an increase in compilation time and code size.
