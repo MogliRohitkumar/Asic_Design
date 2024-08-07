@@ -81,4 +81,33 @@ Ofast - Hex(100e0 - 100b0) / 4 = 12
 The number of instructions decreases with Ofast due to aggressive optimization, but this may lead to an increase in compilation time and code size.
 
 ## LAB - 2
+### Objective
+* To verify the GCC compiler and RISC-V 64bit output using spike RISC-V simulator
+* Using the debug tool in the spike simulator to debug the code.
+
+* Using the command of the previous lab
+```c
+riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
+```
+* A spike simulator is used to run the RISC-V 64-bit architecture. Use the command below.
+```c
+spike pk sum1ton.c
+```
+* This screenshot demonstrates that both the GCC compiler and RISC-V produce the same output.
+
+![Screenshot 2024-08-07 205653](https://github.com/user-attachments/assets/676640e3-59c1-4e6e-8fdb-582e160c3b7f)
+
+* The following command is used to debug the code with the Spike simulator.
+```c
+spike pk -d sum1ton.c
+```
+
+
+
+
+
+
+
+
+
 
