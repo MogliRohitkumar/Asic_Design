@@ -135,13 +135,15 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  ADD r5, r4, r5
 ```
-<div style="border-left: 3px solid white; padding-left: 10px;">
+* All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to R-type instruction set.
+* r5 is the destination register that will hold the sum of values stored in the register r4 and r5.
+* Opcode for ADD = 0110011
+rd = r6 = 00110
+rs1 = r2 = 00010
+rs2 = r1 = 00001
+func3 = 000
+func7 = 0000000
 
-- **Bullet point 1**: Description of the first point.
-- **Bullet point 2**: Description of the second point.
-- **Bullet point 3**: Description of the third point.
-
-</div>
 ```c
  SUB r5, r5, r4
 ```
