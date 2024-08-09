@@ -130,6 +130,60 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 
 * The sp pointer gets updated from 0X0000003ffffffb50 to 0X0000003ffffffb40.
 
+## LAB - 3
+### Objective
+```c
+ ADD r5, r4, r5
+```
+```c
+ SUB r5, r5, r4
+```
+```c
+ AND r4, r5, r5
+```
+```c
+ OR r8, r4, r5
+```
+```c
+ XOR r8, r5, r4
+```
+```c
+ SLT r10, r2, r4
+```
+```c
+ ADDI r12, r3, 5
+```
+```c
+ SW r3, r1, 4
+```
+```c
+ SRL r16, r11, r2
+```
+```c
+ BNE r0, r1, 20
+```
+```c
+ BEQ r0, r0, 15
+```
+```c
+ LW r13, r11, 2
+```
+```c
+ SLL r15, r11, r2
+```
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
 
 
 
