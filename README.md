@@ -91,7 +91,7 @@ The number of instructions decreases with Ofast due to aggressive optimization, 
 
 * Using the command of the previous lab
 ```c
-riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
+riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
 ```
 * A spike simulator is used to run the RISC-V 64-bit architecture. Use the command below.
 ```c
