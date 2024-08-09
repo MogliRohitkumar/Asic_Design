@@ -86,6 +86,7 @@ The number of instructions decreases with Ofast due to aggressive optimization, 
 
 ## LAB - 2
 ### Objective
+
 * To verify the GCC compiler and RISC-V 64bit output using spike RISC-V simulator
 * Using the debug tool in the spike simulator to debug the code.
 
@@ -132,10 +133,11 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 
 ## LAB - 3
 ### Objective
+### All instructions 32 bit pattern and RISC-V instruction type
 ```c
  ADD r5, r4, r5
 ```
-- All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to the R-type instruction set.
+- All the arithmetic and logical operations are performed using **R-type** instruction format, hence this instruction belongs to the **R-type** instruction set.
 - **r5** is the destination register that will hold the sum of values stored in the registers **r4** and **r5**.
 - **Opcode for ADD = `0110011`**
   - **rd = r5 = `00101`**
@@ -149,7 +151,7 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  SUB r5, r5, r4
 ```
-- All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to the R-type instruction set.
+- All the arithmetic and logical operations are performed using **R-type** instruction format, hence this instruction belongs to the **R-type** instruction set.
 - **r5** is the destination register that will hold the sum of values stored in the registers **r5** and **r4**.
 - **Opcode for SUB = `0110011`**
   - **rd = r5 = `00101`**
@@ -162,7 +164,7 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  AND r4, r5, r5
 ```
-- All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to the R-type instruction set.
+- All the arithmetic and logical operations are performed using **R-type** instruction format, hence this instruction belongs to the **R-type** instruction set.
 - **r4** is the destination register that will hold the sum of values stored in the registers **r5** and **r5**.
 - **Opcode for AND = `0110011`**
   - **rd = r4 = `00100`**
@@ -175,7 +177,7 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  OR r8, r4, r5
 ```
-- All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to the R-type instruction set.
+- All the arithmetic and logical operations are performed using **R-type** instruction format, hence this instruction belongs to the **R-type** instruction set.
 - **r8** is the destination register that will hold the sum of values stored in the registers **r4** and **r5**.
 - **Opcode for OR = `0110011`**
   - **rd = r8 = `01000`**
@@ -188,7 +190,7 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  XOR r8, r5, r4
 ```
-- All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to the R-type instruction set.
+- All the arithmetic and logical operations are performed using **R-type** instruction format, hence this instruction belongs to the **R-type** instruction set.
 - **r8** is the destination register that will hold the sum of values stored in the registers **r5** and **r4**.
 - **Opcode for XOR = `0110011`**
   - **rd = r8 = `01000`**
@@ -201,7 +203,7 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  SLT r10, r2, r4
 ```
-- All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to the R-type instruction set.
+- All the arithmetic and logical operations are performed using **R-type** instruction format, hence this instruction belongs to the **R-type** instruction set.
 - **r10** is the destination register that will hold the sum of values stored in the registers **r2** and **r4**.
 - **Opcode for SLT = `0110011`**
   - **rd = r10 = `01010`**
@@ -214,7 +216,7 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  ADDI r12, r3, 5
 ```
-- In this instruction ADD means Addition, I means Immediate, therefore ADDI means Addition with Immediate, hence this instruction belongs to I-type instruction set.
+- In this instruction ADD means Addition, I means Immediate, therefore ADDI means Addition with Immediate, hence this instruction belongs to **I-type** instruction set.
 - **r12** is the destination register that will store the value of **r3** sum-up with the immediate value **5**.
 - **Opcode for ADDI = `0010011`**
     - **rd = r12 = `01100`**
@@ -226,7 +228,7 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  SW r3, r1, 4
 ```
-- In this instruction SW means store word, hence this instruction belongs to S-type instruction set.
+- In this instruction SW means store word, hence this instruction belongs to **S-type** instruction set.
 - **r3** is the source register. This instruction will store the value located in register **r3** at the address obtained by adding the immediate address **4** with the address located in register **r1**.
 - **Opcode for SW = `0100011`**
     - **rs2 = r3 = `00011`**
@@ -238,7 +240,7 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  SRL r16, r11, r2
 ```
-- SRL means Logical Shift Right and since the operation is performed on registers, this instruction belongs to R-type instruction set.
+- SRL means Logical Shift Right and since the operation is performed on registers, this instruction belongs to **R-type** instruction set.
 - **r16** is the destination register that will hold the sum of values stored in the registers **r11** and **r2**.
 - **Opcode for SRL = `0110011`**
   - **rd = r16 = `10000`**
@@ -252,7 +254,7 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  BNE r0, r1, 20
 ```
-- BNE is a branching instruction (B-type) based on conditions. Here BNE specifies the condition that the value stored in **r0** != (is not equal to) the value stored in **r1**. If the condition becomes true, Program Counter will be updated by **PC + 20**, else **PC + 4** for next instruction.
+- BNE is a branching instruction (**B-type**) based on conditions. Here BNE specifies the condition that the value stored in **r0** != (is not equal to) the value stored in **r1**. If the condition becomes true, Program Counter will be updated by **PC + 20**, else **PC + 4** for next instruction.
 - **Opcode for BNE = `1100011`**
   - **rs1 = r0 = `00000`**
   - **rs2 = r1 = `00001`**
@@ -263,7 +265,7 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  BEQ r0, r0, 15
 ```
-- BEQ is a branching instruction (B-type) based on conditions. Here BEQ specifies the condition that the value stored in **r0** == (is equal to) the value stored in **r0**. If the condition becomes true, Program Counter will be updated by **PC + 15**, else **PC + 4** for next instruction.
+- BEQ is a branching instruction (**B-type**) based on conditions. Here BEQ specifies the condition that the value stored in **r0** == (is equal to) the value stored in **r0**. If the condition becomes true, Program Counter will be updated by **PC + 15**, else **PC + 4** for next instruction.
 - **Opcode for BEQ = `1100011`**
   - **rs1 = r0 = `00000`**
   - **rs2 = r0 = `00000`**
@@ -274,7 +276,7 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  LW r13, r11, 2
 ```
-- LW stands for Load Word. Word is equal to 32 bits or 4 bytes. Since there is an immediate value given in the instruction which helps to calculate the address of memory from where we have to fetch the data, hence this instruction belongs to I-type.
+- LW stands for Load Word. Word is equal to 32 bits or 4 bytes. Since there is an immediate value given in the instruction which helps to calculate the address of memory from where we have to fetch the data, hence this instruction belongs to **I-type**.
 - **r13** is the destination register that will hold the value fetched from the memory location calculated by using (address value stored in **r11** + immediate value)
 - **Opcode for LW = `0000011`**
   - **rd = r13 = `01101`**
@@ -286,7 +288,7 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  SLL r15, r11, r2
 ```
-- SLL means Logical Shift Left and since the operation is performed on registers, this instruction belongs to R-type instruction set.
+- SLL means Logical Shift Left and since the operation is performed on registers, this instruction belongs to **R-type** instruction set.
 - **r15** is the destination register, in which the value stored in **r11** will be written after performing logical left shift based on the number stored in **r2**.
 - **Opcode for SLL = `0110011`**
   - **rd = r15 = `01111`**
