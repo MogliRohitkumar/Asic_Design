@@ -138,10 +138,15 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 * All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to R-type instruction set.
 * r5 is the destination register that will hold the sum of values stored in the register r4 and r5.
 * Opcode for ADD = 0110011
+<br>
 rd = r6 = 00110
+<br>
 rs1 = r2 = 00010
+<br>
 rs2 = r1 = 00001
+<br>
 func3 = 000
+<br>
 func7 = 0000000
 
 ```c
