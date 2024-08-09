@@ -136,52 +136,166 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
  ADD r5, r4, r5
 ```
 - All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to the R-type instruction set.
-- **r6** is the destination register that will hold the sum of values stored in the registers **r2** and **r1**.
+- **r5** is the destination register that will hold the sum of values stored in the registers **r4** and **r5**.
 - **Opcode for ADD = `0110011`**
-  - **rd = r6 = `00110`**
-  - **rs1 = r2 = `00010`**
-  - **rs2 = r1 = `00001`**
+  - **rd = r5 = `00101`**
+  - **rs1 = r4 = `00100`**
+  - **rs2 = r5 = `00101`**
   - **func3 = `000`**
   - **func7 = `0000000`**
 
-**32 bits instruction** : `0000000_00001_00010_000_00110_0110011`
+**32 bits instruction** : `0000000_00101_00100_000_00101_0110011`
 
 ```c
  SUB r5, r5, r4
 ```
+- All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to the R-type instruction set.
+- **r5** is the destination register that will hold the sum of values stored in the registers **r5** and **r4**.
+- **Opcode for SUB = `0110011`**
+  - **rd = r5 = `00101`**
+  - **rs1 = r5 = `00101`**
+  - **rs2 = r4 = `00100`**
+  - **func3 = `000`**
+  - **func7 = `0100000`**
+
+**32 bits instruction** : `0100000_00100_00101_000_00101_0110011`
 ```c
  AND r4, r5, r5
 ```
+- All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to the R-type instruction set.
+- **r4** is the destination register that will hold the sum of values stored in the registers **r5** and **r5**.
+- **Opcode for AND = `0110011`**
+  - **rd = r4 = `00100`**
+  - **rs1 = r5 = `00101`**
+  - **rs2 = r5 = `00101`**
+  - **func3 = `111`**
+  - **func7 = `0000000`**
+
+**32 bits instruction** : `0000000_00101_00101_111_00100_0110011`
 ```c
  OR r8, r4, r5
 ```
+- All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to the R-type instruction set.
+- **r8** is the destination register that will hold the sum of values stored in the registers **r4** and **r5**.
+- **Opcode for OR = `0110011`**
+  - **rd = r8 = `01000`**
+  - **rs1 = r4 = `00100`**
+  - **rs2 = r5 = `00101`**
+  - **func3 = `110`**
+  - **func7 = `0000000`**
+
+**32 bits instruction** : `0000000_00101_00100_110_01000_0110011`
 ```c
  XOR r8, r5, r4
 ```
+- All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to the R-type instruction set.
+- **r8** is the destination register that will hold the sum of values stored in the registers **r5** and **r4**.
+- **Opcode for XOR = `0110011`**
+  - **rd = r8 = `01000`**
+  - **rs1 = r5 = `00101`**
+  - **rs2 = r4 = `00100`**
+  - **func3 = `100`**
+  - **func7 = `0000000`**
+
+**32 bits instruction** : `0000000_00100_00101_100_01000_0110011`
 ```c
  SLT r10, r2, r4
 ```
+- All the arithmetic and logical operations are performed using R-type instruction format, hence this instruction belongs to the R-type instruction set.
+- **r10** is the destination register that will hold the sum of values stored in the registers **r2** and **r4**.
+- **Opcode for SLT = `0110011`**
+  - **rd = r10 = `01010`**
+  - **rs1 = r2 = `00010`**
+  - **rs2 = r4 = `00100`**
+  - **func3 = `010`**
+  - **func7 = `0000000`**
+
+**32 bits instruction** : `0000000_00100_00010_010_01010_0110011`
 ```c
  ADDI r12, r3, 5
 ```
+- In this instruction ADD means Addition, I means Immediate, therefore ADDI means Addition with Immediate, hence this instruction belongs to I-type instruction set.
+- **r12** is the destination register that will store the value of **r3** sum-up with the immediate value **5**.
+- **Opcode for ADDI = `0010011`**
+    - **rd = r12 = `01100`**
+    - **rs1 = r4 = `00100`**
+    - **imm[11:0] = 5 = `000000000101`**
+    - **func3 = `000`**
+
+**32 bits instruction** : `000000000101_00100_000_01100_0010011`
 ```c
  SW r3, r1, 4
 ```
+- In this instruction SW means store word, hence this instruction belongs to S-type instruction set.
+- **r3** is the source register. This instruction will store the value located in register **r3** at the address obtained by adding the immediate address **4** with the address located in register **r1**.
+- **Opcode for SW = `0100011`**
+    - **rs2 = r3 = `00011`**
+    - **rs1 = r1 = `00001`**
+    - **imm[11:0] = 4 = `000000000100`**
+    - **func3 = `010`**
+
+**32 bits instruction** : `0000000_00011_00001_010_00100_0100011`
 ```c
  SRL r16, r11, r2
 ```
+- SRL means Logical Shift Right and since the operation is performed on registers, this instruction belongs to R-type instruction set.
+- **r16** is the destination register that will hold the sum of values stored in the registers **r11** and **r2**.
+- **Opcode for SRL = `0110011`**
+  - **rd = r16 = `10000`**
+  - **rs1 = r11 = `01011`**
+  - **rs2 = r2 = `00010`**
+  - **func3 = `101`**
+  - **func7 = `0000000`**
+
+**32 bits instruction** : `0000000_00010_01011_101_10000_0110011`
+
 ```c
  BNE r0, r1, 20
 ```
+- BNE is a branching instruction (B-type) based on conditions. Here BNE specifies the condition that the value stored in **r0** != (is not equal to) the value stored in **r1**. If the condition becomes true, Program Counter will be updated by **PC + 20**, else **PC + 4** for next instruction.
+- **Opcode for BNE = `1100011`**
+  - **rs1 = r0 = `00000`**
+  - **rs2 = r1 = `00001`**
+  - **imm[12:1] = 20 = `000000010100`**
+  - **func3 = `001`**
+
+**32 bits instruction** : `0_000001_00001_00000_001_0100_0_1100011`
 ```c
  BEQ r0, r0, 15
 ```
+- BEQ is a branching instruction (B-type) based on conditions. Here BEQ specifies the condition that the value stored in **r0** == (is equal to) the value stored in **r0**. If the condition becomes true, Program Counter will be updated by **PC + 15**, else **PC + 4** for next instruction.
+- **Opcode for BEQ = `1100011`**
+  - **rs1 = r0 = `00000`**
+  - **rs2 = r0 = `00000`**
+  - **imm[12:1] = `000000001111`**
+  - **func3 = `000`**
+  
+**32 bits instruction : `0_000000_00000_00000_000_1111_0_1100011`**
 ```c
  LW r13, r11, 2
 ```
+- LW stands for Load Word. Word is equal to 32 bits or 4 bytes. Since there is an immediate value given in the instruction which helps to calculate the address of memory from where we have to fetch the data, hence this instruction belongs to I-type.
+- **r13** is the destination register that will hold the value fetched from the memory location calculated by using (address value stored in **r11** + immediate value)
+- **Opcode for LW = `0000011`**
+  - **rd = r13 = `01101`**
+  - **rs1 = r11 = `01011`**
+  - **imm[11:0] = `000000000010`**
+  - **func3 = `010`**
+  
+**32 bits instruction : `000000000010_01011_010_01101_0000011`**
 ```c
  SLL r15, r11, r2
 ```
+- SLL means Logical Shift Left and since the operation is performed on registers, this instruction belongs to R-type instruction set.
+- **r15** is the destination register, in which the value stored in **r11** will be written after performing logical left shift based on the number stored in **r2**.
+- **Opcode for SLL = `0110011`**
+  - **rd = r15 = `01111`**
+  - **rs1 = r11 = `01011`**
+  - **rs2 = r2 = `00010`**
+  - **func3 = `001`**
+  - **func7 = `0000000`**
+  
+**32 bits instruction :`0000000_00010_01011_001_01111_0110011`**
 
 
 
