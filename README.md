@@ -135,6 +135,13 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
  ADD r5, r4, r5
 ```
+<div style="border-left: 3px solid black; padding-left: 10px;">
+
+- **Bullet point 1**: Description of the first point.
+- **Bullet point 2**: Description of the second point.
+- **Bullet point 3**: Description of the third point.
+
+</div>
 ```c
  SUB r5, r5, r4
 ```
