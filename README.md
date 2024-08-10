@@ -299,16 +299,37 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
   
 **32 bits instruction :`0000000_00010_01011_001_01111_0110011`**
 
-| Instruction     | Instruction Type | 32bit pattern |
-|-----------------|-----------------|-----------------|
-| Row 1 Column 1  | Row 1 Column 2  | Row 1 Column 3  |
-| Row 2 Column 1  | Row 2 Column 2  | Row 2 Column 3  |
-| Row 3 Column 1  | Row 3 Column 2  | Row 3 Column 3  |
-
-
-
-
- 
+| Instruction     | Instruction Type | 32bit pattern   | Hexadecimal pattern |
+|-----------------|------------------|-----------------|---------------------|
+| ADD r5, r4, r5  | R-Type  | Row 1 Column 3  | Row 1 Column 3      |
+| SUB r5, r5, r4  | R-Type   | Row 2 Column 3  | Row 2 Column 3      |
+| AND r4, r5, r5  | R-Type   | Row 3 Column 3  | Row 3 Column 3      |
+| OR r8, r4, r5  | R-Type   | Row 3 Column 3  | Row 3 Column 3      |
+| XOR r8, r5, r4  | R-Type   | Row 3 Column 3  | Row 3 Column 3      |
+| SLT r10, r2, r4  | R-Type   | Row 3 Column 3  | Row 3 Column 3      |
+| ADDI r12, r3, 5  | I-Type   | Row 3 Column 3  | Row 3 Column 3      |
+| SW r3, r1, 4  | S-Type   | Row 3 Column 3  | Row 3 Column 3      |
+| SRL r16, r11, r2  | R-Type   | Row 3 Column 3  | Row 3 Column 3      |
+| BNE r0, r1, 20  | B-Type   | Row 3 Column 3  | Row 3 Column 3      |
+| BEQ r0, r0, 15  | B-Type   | Row 3 Column 3  | Row 3 Column 3      |
+| LW r13, r11, 2  | I-Type   | Row 3 Column 3  | Row 3 Column 3      |
+| SLL r15, r11, r2  | R-Type   | Row 3 Column 3  | Row 3 Column 3      |
+ Identify various RISC-V instruction type (R, I, S, B, U, J) and exact 32-bit instruction code in the instruction type format for below RISC-V instructions
+ ADD r5, r4, r5
+ SUB r5, r5, r4
+ AND r4, r5, r5
+ OR r8, r4, r5
+ XOR r8, r5, r4
+ SLT r10, r2, r4
+ ADDI r12, r3, 5
+ SW r3, r1, 4
+ SRL r16, r11, r2
+ BNE r0, r1, 20
+ BEQ r0, r0, 15
+ LW r13, r11, 2
+ SLL r15, r11, r2
+  
+ Upload the 32-bit pattern on Github
  
  
  
