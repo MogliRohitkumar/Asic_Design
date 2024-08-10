@@ -133,6 +133,8 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 
 ## LAB - 3
 ### Objective
+- Identifying different instruction types (R-type, I-type, S-type, B-type, U-type, and J-type) and writing the 32-bit pattern code for each instruction.
+### Instructions
 ```c
  ADD r5, r4, r5
  SUB r5, r5, r4
@@ -148,6 +150,14 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
  LW r13, r11, 2
  SLL r15, r11, r2
 ```
+
+### RISC-V base instruction formats
+![image](https://github.com/user-attachments/assets/c6bb13de-b03f-477b-8c14-126a1e702cb9)
+
+### Base instruction table
+![image](https://github.com/user-attachments/assets/ef5b6763-6907-4293-971b-65a479538d97)
+
+
 ### All instructions 32 bit pattern and RISC-V instruction type
 ```c
  ADD r5, r4, r5
@@ -331,6 +341,8 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 | BEQ r0, r0, 15  | B-Type   | 0_000000_00000_00000_000_1111_0_1100011  | 0x00000F63      |
 | LW r13, r11, 2  | I-Type   | 000000000010_01011_010_01101_0000011  | 0x0025A683      |
 | SLL r15, r11, r2  | R-Type   | 0000000_00010_01011_001_01111_0110011  | 0x002597B3      |
+
+
 
  
  
