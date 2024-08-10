@@ -133,7 +133,8 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 
 ## LAB - 3
 ### Objective
-- Identifying different instruction types (R-type, I-type, S-type, B-type, U-type, and J-type) and writing the 32-bit pattern code for each instruction.
+- Identifying different instruction types (R-type, I-type, S-type, B-type, U-type, and J-type) 
+- Writing the 32-bit pattern code for each instruction.
 ### Instructions
 ```c
  ADD r5, r4, r5
