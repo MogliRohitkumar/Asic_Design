@@ -299,6 +299,13 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
   
 **32 bits instruction :`0000000_00010_01011_001_01111_0110011`**
 
+| Instruction     | Instruction Type | 32bit pattern |
+|-----------------|-----------------|-----------------|
+| Row 1 Column 1  | Row 1 Column 2  | Row 1 Column 3  |
+| Row 2 Column 1  | Row 2 Column 2  | Row 2 Column 3  |
+| Row 3 Column 1  | Row 3 Column 2  | Row 3 Column 3  |
+
+
 
 
  
