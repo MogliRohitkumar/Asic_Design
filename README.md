@@ -367,12 +367,12 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
 ADD r5, r4, r5
 ```
-![image](https://github.com/user-attachments/assets/8f58200f-c949-4f2f-a2d5-2653a5623a7a)
+<img width="375" alt="1" src="https://github.com/user-attachments/assets/f79e9479-3b4d-45f6-8ba5-2dde88c6536e">
 
 ```c
 SUB r5, r5, r4
 ```
-![image](https://github.com/user-attachments/assets/23738082-0593-4c86-9326-ad9988a84b55)
+<img width="374" alt="2" src="https://github.com/user-attachments/assets/0cbc05a1-7c88-42a0-bffb-9af8d87e1d43">
 
 ```c
 AND r4, r5, r5
