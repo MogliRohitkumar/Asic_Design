@@ -418,7 +418,7 @@ BEQ r0, r0, 15
 <img width="604" alt="10" src="https://github.com/user-attachments/assets/d9ee77f8-9be9-44e6-b73d-d6844e0d41c7">
 
 ```c
-ADD r14, r2, r2
+SRL r16, r11, r2
 ```
 <img width="604" alt="11" src="https://github.com/user-attachments/assets/4b7d62ca-5c03-48c5-bcf2-877d908b323e">
 
