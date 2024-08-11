@@ -387,12 +387,12 @@ OR r8, r4, r5
 ```c
 XOR r8, r5, r4
 ```  
-![image](https://github.com/user-attachments/assets/397a7dba-b922-43ea-ba4a-e39cdedf12d7)
+![image](https://github.com/user-attachments/assets/23678a0d-9299-4040-a08c-e64905999ff5)
 
 ```c
 SLT r10, r2, r4 
 ```
-![image](https://github.com/user-attachments/assets/7d87cd88-eda7-4aec-96f7-d56067119146)
+![image](https://github.com/user-attachments/assets/17676996-ed1c-480d-8388-837909e848b6)
 
 ```c
 ADDI r12, r3, 5  
