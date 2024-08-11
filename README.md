@@ -377,42 +377,53 @@ SUB r5, r5, r4
 ```c
 AND r4, r5, r5
 ```
-![image](https://github.com/user-attachments/assets/da468b1e-ea91-41cc-bd50-0e57ef97403e)
+<img width="374" alt="3" src="https://github.com/user-attachments/assets/2671958d-e773-4bf0-b44e-7bbdb5f59c37">
 
 ```c
 OR r8, r4, r5
 ```
-![image](https://github.com/user-attachments/assets/2657eb8c-fe33-436e-a82c-15ed7b68a464)
+<img width="371" alt="4" src="https://github.com/user-attachments/assets/598930bd-4c56-474e-981d-3045f9b38e7f">
+
 
 ```c
 XOR r8, r5, r4
 ```  
-![image](https://github.com/user-attachments/assets/23678a0d-9299-4040-a08c-e64905999ff5)
+<img width="373" alt="5" src="https://github.com/user-attachments/assets/e4912603-89da-492a-a9d1-293080aff980">
 
 ```c
 SLT r10, r2, r4 
 ```
-![image](https://github.com/user-attachments/assets/17676996-ed1c-480d-8388-837909e848b6)
+<img width="374" alt="6" src="https://github.com/user-attachments/assets/6ede7353-e86e-4cda-93d8-cc783c35000f">
+
 
 ```c
 ADDI r12, r3, 5  
 ```
-![image](https://github.com/user-attachments/assets/d8c72191-5c44-49da-bb80-b41231d3db69)
+<img width="374" alt="7" src="https://github.com/user-attachments/assets/0da68ed3-3edf-45b2-94dd-825384cd3d10">
+
 
 ```c
 SW r3, r1, 4   
 ```
-![image](https://github.com/user-attachments/assets/5bf759fc-efd1-4191-96ac-99afd260f1d5)
+<img width="375" alt="8" src="https://github.com/user-attachments/assets/c501f6b7-ac99-4511-9258-c2b23e5e142a">
+
+```c
+LW r13, r11, 2  
+```
+<img width="352" alt="9" src="https://github.com/user-attachments/assets/7f34f4ac-30ee-42fd-955d-7cef799061b1">
 
 ```c
 BEQ r0, r0, 15   
 ```
-![image](https://github.com/user-attachments/assets/2dbd02ae-9a44-49ee-aaf5-252a8355699d)
+<img width="373" alt="10" src="https://github.com/user-attachments/assets/d9ee77f8-9be9-44e6-b73d-d6844e0d41c7">
 
 ```c
 ADD r14, r2, r2
 ```
-![image](https://github.com/user-attachments/assets/7c94c1f3-32d0-4fef-89f5-11c4c0a14718)
+<img width="374" alt="11" src="https://github.com/user-attachments/assets/4b7d62ca-5c03-48c5-bcf2-877d908b323e">
 
+### Final output
+
+<img width="604" alt="12" src="https://github.com/user-attachments/assets/36acfa08-5752-41ea-a06f-1178858b12f3">
 
 
