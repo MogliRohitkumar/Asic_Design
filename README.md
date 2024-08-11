@@ -367,30 +367,27 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 ```c
 ADD r5, r4, r5
 ```
-![image](https://github.com/user-attachments/assets/4a6479ec-22f8-4cea-82d2-1c1a3fdf6c01)
+![image](https://github.com/user-attachments/assets/8f58200f-c949-4f2f-a2d5-2653a5623a7a)
 
 ```c
 SUB r5, r5, r4
 ```
-![image](https://github.com/user-attachments/assets/f8bf4de8-a4e4-402a-8746-8329f596eb9e)
+![image](https://github.com/user-attachments/assets/23738082-0593-4c86-9326-ad9988a84b55)
 
 ```c
 AND r4, r5, r5
 ```
-![image](https://github.com/user-attachments/assets/a5a029c2-05bc-40c2-9dc1-b6430b854909)
+![image](https://github.com/user-attachments/assets/da468b1e-ea91-41cc-bd50-0e57ef97403e)
 
 ```c
 OR r8, r4, r5
 ```
-![image](https://github.com/user-attachments/assets/6057587b-6b55-4c8c-91fe-8b9898dfbc8c)
+![image](https://github.com/user-attachments/assets/2657eb8c-fe33-436e-a82c-15ed7b68a464)
 
 ```c
-XOR r8, r4, r4
-```
-- The given rv32i code is not working for **r5** register. I tried debugging it but couldn't identify the issue.
-- It's working fine for register **r1**,**r2**,**r3**,**r4** and **r6** but it's overflowing for the other register values. 
-  
-![image](https://github.com/user-attachments/assets/0311dc5d-d219-423b-b791-2df7a9543227)
+XOR r8, r5, r4
+```  
+![image](https://github.com/user-attachments/assets/397a7dba-b922-43ea-ba4a-e39cdedf12d7)
 
 ```c
 SLT r10, r2, r4 
@@ -417,5 +414,10 @@ ADD r14, r2, r2
 ```
 ![image](https://github.com/user-attachments/assets/7c94c1f3-32d0-4fef-89f5-11c4c0a14718)
 
-- The BNE command isn't working when I run it on my local machine, and the code has numerous logical errors
+### Final output
+
+![image](https://github.com/user-attachments/assets/b981bae2-4acf-4e9b-810a-086b6d2a279c)
+
+
+- 
 
