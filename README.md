@@ -414,10 +414,5 @@ ADD r14, r2, r2
 ```
 ![image](https://github.com/user-attachments/assets/7c94c1f3-32d0-4fef-89f5-11c4c0a14718)
 
-### Final output
 
-![image](https://github.com/user-attachments/assets/b981bae2-4acf-4e9b-810a-086b6d2a279c)
-
-
-- 
 
