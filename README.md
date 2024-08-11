@@ -362,20 +362,59 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 | BEQ r0, r0, 15  | 0_000000_00000_00000_000_1111_0_1100011   | 0X00f00002 |0_000000_00000_00000_000_1111_0_1100011  | 0x00000F63      |
 | SRL r16, r11, r2  | 0000000_00010_01011_001_10000_0000011 |0x00259803  | 0000000_00010_01011_101_10000_0110011 | 0x0025D833      |
  
- 
+### Output waveform
 
- 
- 
- 
- 
- 
+```c
+ADD r5, r4, r5
+```
+![image](https://github.com/user-attachments/assets/5631d19a-362a-4584-ac3d-065678364a37)
+```c
+SUB r5, r5, r4
+```
+![image](https://github.com/user-attachments/assets/f8bf4de8-a4e4-402a-8746-8329f596eb9e)
+
+```c
+AND r4, r5, r5
+```
+![image](https://github.com/user-attachments/assets/a5a029c2-05bc-40c2-9dc1-b6430b854909)
+
+```c
+OR r8, r4, r5
+```
+![image](https://github.com/user-attachments/assets/6057587b-6b55-4c8c-91fe-8b9898dfbc8c)
+
+```c
+XOR r8, r4, r4
+```
+- The given rv32i code is not working for **r5** register. I tried debugging it but couldn't identify the issue.
+- It's working fine for register **r1**,**r2**,**r3**,**r4** and **r6** but it's overflowing for the other register values. 
   
+![image](https://github.com/user-attachments/assets/0311dc5d-d219-423b-b791-2df7a9543227)
 
+```c
+SLT r10, r2, r4 
+```
+![image](https://github.com/user-attachments/assets/7d87cd88-eda7-4aec-96f7-d56067119146)
 
+```c
+ADDI r12, r3, 5  
+```
+![image](https://github.com/user-attachments/assets/d8c72191-5c44-49da-bb80-b41231d3db69)
 
+```c
+SW r3, r1, 4   
+```
+![image](https://github.com/user-attachments/assets/5bf759fc-efd1-4191-96ac-99afd260f1d5)
 
+```c
+BEQ r0, r0, 15   
+```
+![image](https://github.com/user-attachments/assets/2dbd02ae-9a44-49ee-aaf5-252a8355699d)
 
+```c
+ADD r14, r2, r2
+```
+![image](https://github.com/user-attachments/assets/7c94c1f3-32d0-4fef-89f5-11c4c0a14718)
 
-
-
+- The BNE command isn't working when I run it on my local machine, and the code has numerous logical errors
 
