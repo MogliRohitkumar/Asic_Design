@@ -343,6 +343,11 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 | LW r13, r11, 2  | I-Type   | 000000000010_01011_010_01101_0000011  | 0x0025A683      |
 | SLL r15, r11, r2  | R-Type   | 0000000_00010_01011_001_01111_0110011  | 0x002597B3      |
 
+## LAB - 4
+### Objective
+- Using the RISC-V core Verilog netlist and testbench for a functional simulation experiment
+- Plot the waveform in gtkwave
+
 ### Hardcoded table based on the provided Verilog code
 
 - In the Verilog code, the opcode varies for each instruction type, and different instructions have distinct func3 values.
