@@ -451,7 +451,7 @@ SRL r16, r11, r2
 
 ## LAB - 5
 ### Objective
-
+* Select an application, write the application code in C language, and compile it using GCC or RISC-V GCC.
 ### C code of BMI calculator
 * Code of C program that calculates a person's BMI using their height and weight.
 ```c
