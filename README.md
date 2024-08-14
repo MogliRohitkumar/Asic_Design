@@ -353,6 +353,8 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 - In the Verilog code, the opcode varies for each instruction type, and different instructions have distinct func3 values.
 - To differentiate between immediate operations and other arithmetic functions, func7 is used; otherwise, func7 is set to b'0.
 
+#### Hardcoded table for given instructions
+
 | Instruction     | Hardcoded 32bit pattern | Hardcoded hexadecimal pattern| 32bit pattern   | Hexadecimal pattern |
 |-----------------|-------------------------|------------------------------|---------------------|---------------|
 | ADD r5, r4, r5  | 0000001_00101_00100_000_00101_0000000 | 0x02520280 | 0000000_00101_00100_000_00101_0110011  | 0x005202B3 |
@@ -367,7 +369,7 @@ Debugging the addi sp, sp,-16 which reduces the sp pointer by 16
 | BEQ r0, r0, 15  | 0_000000_00000_00000_000_1111_0_1100011   | 0X00f00002 |0_000000_00000_00000_000_1111_0_1100011  | 0x00000F63      |
 | SRL r16, r11, r2  | 0000000_00010_01011_001_10000_0000011 |0x00259803  | 0000000_00010_01011_101_10000_0110011 | 0x0025D833      |
 
-### Comparsion
+#### Comparsion RISC-V ISA and  Hardcoded ISA 
 
 | Operation           | Standard RISC-V ISA | Hardcoded ISA |
 |---------------------|---------------------|---------------|
