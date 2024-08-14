@@ -452,7 +452,9 @@ SRL r16, r11, r2
 ## LAB - 5
 ### Objective
 * Select an application, write the application code in C language, and compile it using GCC or RISC-V GCC.
-### C code of BMI calculator
+### BMI calculator
+* A BMI (Body Mass Index) calculator is a widely used tool to assess whether a person has a healthy body weight for a given height. By calculating the ratio of weight to height squared, BMI provides a quick estimate of body fat, allowing individuals to understand their weight category—underweight, normal weight, overweight, or obese—based on standardized classifications.
+### C Code
 * Code of C program that calculates a person's BMI using their height and weight.
 ```c
 #include <stdio.h>
