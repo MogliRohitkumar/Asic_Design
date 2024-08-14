@@ -96,7 +96,7 @@ riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
 ```
 * A spike simulator is used to run the RISC-V 64-bit architecture. Use the command below.
 ```c
-spike pk sum1ton.c
+spike pk sum1ton.o
 ```
 * This screenshot demonstrates that both the GCC compiler and RISC-V produce the same output.
 
@@ -484,6 +484,9 @@ int main() {
     return 0;
 }
 ```
+
+![1](https://github.com/user-attachments/assets/25e2a141-41d2-40fe-9cd1-2df8d4e2c4fc)
+
 ### Part-1(GCC compiler)
 * Running the C program using gcc compiler
 #### Command
@@ -491,10 +494,16 @@ int main() {
 gcc sum1ton.c
 ./a.out
 ```
+
+![2](https://github.com/user-attachments/assets/3b8a8070-27c1-42d8-b212-33e1f4bd5295)
+
 ### Part-2(RISC-V 64bit)
+* Using the O1 optimization level to compile for the RISC-V 64-bit architecture.
 * A spike simulator is used to run the RISC-V 64-bit architecture.
 #### Command
 ```c
 riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
-spike pk sum1ton.c
+spike pk sum1ton.o
 ```
+
+![3](https://github.com/user-attachments/assets/c89c1869-f3fd-4e43-a6c7-4b63cebc5775)
