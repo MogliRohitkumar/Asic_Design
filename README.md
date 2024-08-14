@@ -452,3 +452,49 @@ SRL r16, r11, r2
 ## LAB - 5
 ### Objective
 
+### C code of BMI calculator
+* Code of C program that calculates a person's BMI using their height and weight.
+```c
+#include <stdio.h>
+
+void calculateBMI(double weight, double height) {
+    double bmi = weight / (height * height);
+    printf("Your BMI is: %.2f\n", bmi);
+    if (bmi < 18.5) {
+        printf("You are underweight.\n");
+    } else if (bmi < 24.9) {
+        printf("You have a normal weight.\n");
+    } else if (bmi < 29.9) {
+        printf("You are overweight.\n");
+    } else {
+        printf("You are obese.\n");
+    }
+}
+
+int main() {
+    double weight, height;
+
+    printf("Enter your weight in kilograms: ");
+    scanf("%lf", &weight);
+    printf("Enter your height in meters: ");
+    scanf("%lf", &height);
+
+    calculateBMI(weight, height);
+
+    return 0;
+}
+```
+### Part-1(GCC compiler)
+* Running the C program using gcc compiler
+#### Command
+```c
+gcc sum1ton.c
+./a.out
+```
+### Part-2(RISC-V 64bit)
+* A spike simulator is used to run the RISC-V 64-bit architecture.
+#### Command
+```c
+riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
+spike pk sum1ton.c
+```
