@@ -449,4 +449,6 @@ SRL r16, r11, r2
 
 <img width="1000" alt="12" src="https://github.com/user-attachments/assets/36acfa08-5752-41ea-a06f-1178858b12f3">
 
+## LAB - 5
+### Objective
 
