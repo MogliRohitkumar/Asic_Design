@@ -509,3 +509,30 @@ spike pk sum1ton.o
 ```
 
 ![3](https://github.com/user-attachments/assets/c89c1869-f3fd-4e43-a6c7-4b63cebc5775)
+
+## LAB - 6
+### Objective
+
+### Basic RISC-V CPU Micro-Architecture
+
+![image](https://github.com/user-attachments/assets/98fe8e97-20ad-4f30-9ea2-4ea07a6e279c)
+
+#### Program Counter
+![image](https://github.com/user-attachments/assets/d6cc376e-1549-46b5-88da-e1003eae9201)
+
+#### Fetch Logic
+![image](https://github.com/user-attachments/assets/61b8bb06-82e8-4090-96e9-0c74897d4855)
+
+#### Decode Logic
+![image](https://github.com/user-attachments/assets/1692d349-dbd7-4fda-a2df-24b48bb9bf44)
+
+#### Immediate Decode Logic
+![image](https://github.com/user-attachments/assets/b0b69611-e4db-48c0-b26a-615ce09e0e29)
+
+#### Decode Logic For Other Fields
+![image](https://github.com/user-attachments/assets/3cd70f04-e20a-4066-bf26-65551ccebc0d)
+
+
+
+
+
