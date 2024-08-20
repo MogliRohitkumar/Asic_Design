@@ -514,43 +514,58 @@ spike pk sum1ton.o
 ### Objective
 
 ### Basic RISC-V CPU Micro-Architecture
-
+* This section will detail the implementation of a simple 3-stage RISC-V core/CPU. The core operates through three primary stages: Fetch, Decode, and Execute. 
 ![image](https://github.com/user-attachments/assets/98fe8e97-20ad-4f30-9ea2-4ea07a6e279c)
 
 #### Program Counter
+* The program counter increments by 4 to fetch the next instruction from memory, as illustrated in the image below. If a reset is triggered, the program counter will be initialized to zero, preparing it to fetch the next instruction.
 ![image](https://github.com/user-attachments/assets/d6cc376e-1549-46b5-88da-e1003eae9201)
 
 #### Fetch Logic
+* The program counter's output is used to fetch an instruction from the instruction memory. The instruction memory outputs a 32-bit instruction based on the provided input address. During the Fetch stage, the processor retrieves the instruction from the instruction memory at the address specified by the program counter.
 ![image](https://github.com/user-attachments/assets/61b8bb06-82e8-4090-96e9-0c74897d4855)
 
 #### Decode Logic
+* Below is the snapshot of the different instruction types (instr[6:2] determine instruction type: I, R, S, B, J, U)
+![image](https://github.com/user-attachments/assets/c110516e-4088-4689-b748-3b98dfeea9ce)
+* We have decoded the instruction based on all six types of the RISC-V instruction set.
 ![image](https://github.com/user-attachments/assets/1692d349-dbd7-4fda-a2df-24b48bb9bf44)
 
 #### Immediate Decode Logic
+* Below is the snapshot to determine the immediate value of different instructions 
+![image](https://github.com/user-attachments/assets/3aaa48ea-053d-4273-a267-5f0e1992258a)
+* The instruction set includes an immediate field. To decode this field .
 ![image](https://github.com/user-attachments/assets/b0b69611-e4db-48c0-b26a-615ce09e0e29)
 
 #### Decode Logic For Other Fields
+* Only one instruction is passed on for decoding at a time. This instruction can belong to any one of the six instruction set types. Therefore, it is crucial to validate that it belongs to the correct category to prevent conflicts between different instruction set types.
 ![image](https://github.com/user-attachments/assets/3cd70f04-e20a-4066-bf26-65551ccebc0d)
 
 #### Decode Individual Instructions
+* Decoding the each instruction type in the following format.
 ![image](https://github.com/user-attachments/assets/7a851a9d-992b-4e20-87ed-f29b7de2ea4b)
 
 #### Register File Read and Enable
+* We read instructions from the instruction memory and store them in two register slots. After storing the instructions, we send them to the ALU for further processing.
 ![image](https://github.com/user-attachments/assets/4a2af94a-2b7c-4041-bb16-681f221da709)
 
 #### ALU Block
+* Depending on the decoded operation, the instruction is executed. If necessary, the Arithmetic and Logic Unit (ALU) is utilized. For branching instructions, the target branch address is computed separately before executing the instruction. The result is then stored back in the Register File, according to the destination register index. During the Execute stage, both operands perform the operation based on the opcode.
 ![image](https://github.com/user-attachments/assets/b77f4b24-bd6d-43d6-80a6-9cd7d4ef4cd8)
 
 #### Register File Write and Enable
+* After the ALU performs operations on the values stored in the registers, these values may need to be written back into the registers. This is accomplished using the register file write. We must also ensure that we do not write to the register if the destination is x0, as it is always intended to be zero.
 ![image](https://github.com/user-attachments/assets/e60d9546-2136-4fb5-920e-e5c1ec6ab713)
 
 #### Branch Instructions
+* Based on the control input, we may need to jump to a different address after a particular instruction, depending on a condition generated during runtime. This is where branch instructions come into play.
 ![image](https://github.com/user-attachments/assets/94c89c2a-fa88-4122-96de-7c14edd22a89)
 
 #### Testbench
-
+* To verify the correctness of the code, we use a testbench to check it during the first five cycles.
 ![image](https://github.com/user-attachments/assets/a9a082b8-2e0c-473a-8d27-5dae4bfc3a4c)
 
+#### Results
 ![image](https://github.com/user-attachments/assets/3b7ad95b-253a-4ae1-a129-2ab3ced3b5eb)
 ![image](https://github.com/user-attachments/assets/14cd22e4-0021-45c3-bbf1-70d50196166d)
 
