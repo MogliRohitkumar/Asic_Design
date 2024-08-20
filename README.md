@@ -566,7 +566,9 @@ spike pk sum1ton.o
 ![image](https://github.com/user-attachments/assets/a9a082b8-2e0c-473a-8d27-5dae4bfc3a4c)
 
 #### Results
+* Block Diagram
 ![image](https://github.com/user-attachments/assets/3b7ad95b-253a-4ae1-a129-2ab3ced3b5eb)
+* Waveform
 ![image](https://github.com/user-attachments/assets/14cd22e4-0021-45c3-bbf1-70d50196166d)
 
 
