@@ -532,7 +532,26 @@ spike pk sum1ton.o
 #### Decode Logic For Other Fields
 ![image](https://github.com/user-attachments/assets/3cd70f04-e20a-4066-bf26-65551ccebc0d)
 
+#### Decode Individual Instructions
+![image](https://github.com/user-attachments/assets/7a851a9d-992b-4e20-87ed-f29b7de2ea4b)
 
+#### Register File Read and Enable
+![image](https://github.com/user-attachments/assets/4a2af94a-2b7c-4041-bb16-681f221da709)
 
+#### ALU Block
+![image](https://github.com/user-attachments/assets/b77f4b24-bd6d-43d6-80a6-9cd7d4ef4cd8)
+
+#### Register File Write and Enable
+![image](https://github.com/user-attachments/assets/e60d9546-2136-4fb5-920e-e5c1ec6ab713)
+
+#### Branch Instructions
+![image](https://github.com/user-attachments/assets/94c89c2a-fa88-4122-96de-7c14edd22a89)
+
+#### Testbench
+
+![image](https://github.com/user-attachments/assets/a9a082b8-2e0c-473a-8d27-5dae4bfc3a4c)
+
+![image](https://github.com/user-attachments/assets/3b7ad95b-253a-4ae1-a129-2ab3ced3b5eb)
+![image](https://github.com/user-attachments/assets/14cd22e4-0021-45c3-bbf1-70d50196166d)
 
 
