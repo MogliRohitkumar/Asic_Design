@@ -643,22 +643,30 @@ $jalr_valid = $valid && $is_jalr;
 #### Final Check for Passed Condition:
 
 ```c
-*passed = |cpu/xreg[17]>>5$value == (1+2+3+4+5+6+7+8+9);
+*passed = |cpu/xreg[14]>>5$value == (1+2+3+4+5+6+7+8+9+10);
 ```
 
 ![image](https://github.com/user-attachments/assets/a8727117-94d3-4311-a92e-9a9f7b1981aa)
-VIZ table:
+#### Results
+* VIZ table:
+    * You can see that the value of reg 10 and reg 14 will reach to 55 after 59 cycles.
 
-You can see that the value of reg 10 and reg 14 will reach to 55 after 64 cycles.
 ![image](https://github.com/user-attachments/assets/9a5ac09b-79e2-4040-9c00-10c5d471a6fc)
+* Block Diagram:
 
 ![image](https://github.com/user-attachments/assets/92b7861e-7c7d-4801-a356-e5d49aba3045)
+* Waveform
+    - Clock waveform named as clk_roh
 
-![image](https://github.com/user-attachments/assets/a4cf2275-8b45-481f-9872-b06df6283d4b)
+    ![image](https://github.com/user-attachments/assets/a4cf2275-8b45-481f-9872-b06df6283d4b)
 
-![image](https://github.com/user-attachments/assets/6feea98c-43a1-4303-9b37-22550ca4fa4c)
+    - Reset waveform
+    
+    ![image](https://github.com/user-attachments/assets/6feea98c-43a1-4303-9b37-22550ca4fa4c)
 
-![image](https://github.com/user-attachments/assets/44c08506-b829-4614-b345-47f5d7629b40)
+    - Final Result waveform
+    
+    ![image](https://github.com/user-attachments/assets/44c08506-b829-4614-b345-47f5d7629b40)
 
 
 
