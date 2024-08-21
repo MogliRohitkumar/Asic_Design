@@ -645,7 +645,7 @@ $jalr_valid = $valid && $is_jalr;
 ```c
 *passed = |cpu/xreg[14]>>5$value == (1+2+3+4+5+6+7+8+9+10);
 ```
-
+* A screenshot of the code, waveform, and block diagram.
 ![image](https://github.com/user-attachments/assets/a8727117-94d3-4311-a92e-9a9f7b1981aa)
 #### Results
 * VIZ table:
