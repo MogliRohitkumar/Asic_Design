@@ -584,7 +584,19 @@ spike pk sum1ton.o
   
 ![image](https://github.com/user-attachments/assets/3b7ad95b-253a-4ae1-a129-2ab3ced3b5eb)
 * Waveform
-  
+- Clock waveform named as clk_roh
+
 ![image](https://github.com/user-attachments/assets/14cd22e4-0021-45c3-bbf1-70d50196166d)
+
+- Reset waveform
+  
+![15](https://github.com/user-attachments/assets/209d4c7f-7708-41fd-9bfd-b387cea043a8)
+
+- Final Result waveform
+  
+![16](https://github.com/user-attachments/assets/bd307cb7-5e87-4bfa-9e84-4a2a148b8f85)
+
+
+
 
 
