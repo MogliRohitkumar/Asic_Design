@@ -647,7 +647,9 @@ $jalr_valid = $valid && $is_jalr;
 ```
 
 ![image](https://github.com/user-attachments/assets/a8727117-94d3-4311-a92e-9a9f7b1981aa)
+VIZ table:
 
+You can see that the value of reg 10 and reg 14 will reach to 55 after 64 cycles.
 ![image](https://github.com/user-attachments/assets/9a5ac09b-79e2-4040-9c00-10c5d471a6fc)
 
 ![image](https://github.com/user-attachments/assets/92b7861e-7c7d-4801-a356-e5d49aba3045)
