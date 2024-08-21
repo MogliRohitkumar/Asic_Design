@@ -600,6 +600,52 @@ spike pk sum1ton.o
 * After pipelining is validated in simulations, support for Jump instructions is added.
 * Additionally, Instruction Decode and ALU implementation for the RV32I Base Integer Instruction Set are incorporated.
 
+#### Introducing Valid Signal for Pipelined Logic:
+* Which introduces valid signals for pipelined logic, handles data hazards in the register file with bypassing, and corrects the branch target path:
+
+```c
+$start            = >>1$reset && !$reset;
+$valid            = $reset ? 1'b0 : ($start || >>3$valid);
+$valid_or_reset   = $valid || $reset;
+
+$rs1_or_funct3_valid = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
+$rs2_valid           = $is_r_instr || $is_s_instr || $is_b_instr;
+$rd_valid            = $is_r_instr || $is_i_instr || $is_u_instr || $is_j_instr;
+$funct7_valid        = $is_r_instr;
+```
+
+#### Handling Data Hazards in Register File with Bypassing:
+
+```c
+// Register file bypass logic - data forwarding from ALU to resolve RAW dependence
+$src1_value[31:0] = $rs1_bypass ? >>1$result[31:0] : $rf_rd_data1[31:0];
+$src2_value[31:0] = $rs2_bypass ? >>1$result[31:0] : $rf_rd_data2[31:0];
+```
+
+#### Correcting Branch Target Path:
+
+```c
+// Current instruction is valid if one of the previous 2 instructions were not (due to taken_branch, load, or jump)
+$valid = ~(>>1$valid_taken_br || >>2$valid_taken_br || >>1$is_load || >>2$is_load || >>2$jump_valid || >>1$jump_valid);
+
+// Determine if the current instruction is valid and if it is a taken branch
+$valid_taken_br = $valid && $taken_br;
+
+// Determine if the current instruction is valid and if it is a load
+$valid_load = $valid && $is_load;
+
+// Determine if the current instruction is valid and if it is a jump
+$jump_valid = $valid && $is_jump;
+$jal_valid  = $valid && $is_jal;
+$jalr_valid = $valid && $is_jalr;
+```
+
+#### Final Check for Passed Condition:
+
+```c
+*passed = |cpu/xreg[17]>>5$value == (1+2+3+4+5+6+7+8+9);
+```
+
 ![image](https://github.com/user-attachments/assets/a8727117-94d3-4311-a92e-9a9f7b1981aa)
 
 ![image](https://github.com/user-attachments/assets/9a5ac09b-79e2-4040-9c00-10c5d471a6fc)
