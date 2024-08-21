@@ -514,7 +514,7 @@ spike pk sum1ton.o
 ### Objective
 
 ### Basic RISC-V CPU Micro-Architecture
-* This section will detail the implementation of a simple 3-stage RISC-V core/CPU. The core operates through three primary stages: Fetch, Decode, and Execute. \
+* This section will detail the implementation of a simple 3-stage RISC-V core/CPU. The core operates through three primary stages: Fetch, Decode, and Execute.
 
 ![image](https://github.com/user-attachments/assets/98fe8e97-20ad-4f30-9ea2-4ea07a6e279c)
 
