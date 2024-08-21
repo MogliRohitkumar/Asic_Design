@@ -673,7 +673,7 @@ $jalr_valid = $valid && $is_jalr;
     ![image](https://github.com/user-attachments/assets/44c08506-b829-4614-b345-47f5d7629b40)
 
 
-  boobies
+
 
 
 
