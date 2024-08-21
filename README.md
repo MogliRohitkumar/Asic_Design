@@ -512,6 +512,8 @@ spike pk sum1ton.o
 
 ## LAB - 6
 ### Objective
+* The objective of this lab project is to build a 5-stage pipelined RISC-V processor by following the detailed lab lectures on the VSDIAT platform.
+* A unique clock signal name should be used by appending your initials to the clock signal name. The project will be guided by the recordings available on Cell S1.
 
 ### Basic RISC-V CPU Micro-Architecture
 * This section will detail the implementation of a simple 3-stage RISC-V core/CPU. The core operates through three primary stages: Fetch, Decode, and Execute.
