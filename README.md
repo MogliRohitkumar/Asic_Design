@@ -673,9 +673,65 @@ $jalr_valid = $valid && $is_jalr;
     ![image](https://github.com/user-attachments/assets/44c08506-b829-4614-b345-47f5d7629b40)
 
 
+## LAB - 7
+### Objective
+
+* Run the following commands to set up a development environment for working with simulation and synthesis tools
+
+```c
+$ sudo apt install make python python3 python3-pip git iverilog gtkwave
+
+$ cd ~
+
+$ sudo apt-get install python3-venv
+
+$ python3 -m venv .venv
+
+$ source ~/.venv/bin/activate
+
+$ pip3 install pyyaml click sandpiper-saas
+```
+
+![1](https://github.com/user-attachments/assets/7853fa2e-1f74-46d3-8e60-96295ae2e853)
+
+* To install the required packages, run these commands in a virtual environment
+
+```c
+$ sudo apt install make python python3 python3-pip git iverilog gtkwave docker.io
+
+$ sudo chmod 666 /var/run/docker.sock
+
+$ cd ~
+
+$ pip3 install pyyaml click sandpiper-saas
+```
+
+![2](https://github.com/user-attachments/assets/918bbe09-3c0c-4981-9634-94ff7f4754e0)
+
+* Next, clone the following repository into your home directory and create a pre_synth_sim directory to store the output.
+* 
+```c
+$ cd ~
+
+$ git clone https://github.com/manili/VSDBabySoC.git
+
+$ cd /home/vsduser/VSDBabySoC
+
+$ make pre_synth_sim
+```
+
+![3](https://github.com/user-attachments/assets/7130ccba-d3b2-4a44-a8b4-17b1649caf68)
+
+* 
+![4](https://github.com/user-attachments/assets/29cdb6b9-9569-453e-8f5e-2be056859c26)
 
 
+![5](https://github.com/user-attachments/assets/751d9c82-e9e1-499c-a951-b48e863b81ff)
 
 
+![6](https://github.com/user-attachments/assets/e1297a86-c6ef-4510-ad90-f2ce82b600e7)
 
+![7](https://github.com/user-attachments/assets/5a894510-403e-46b4-bb73-40abd62434e1)
+
+![8](https://github.com/user-attachments/assets/a40c9a2b-6784-49a9-b37f-f1461a3a6111)
 
