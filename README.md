@@ -743,7 +743,7 @@ $ ./pre_synth_sim.out
 ```
 ![5](https://github.com/user-attachments/assets/751d9c82-e9e1-499c-a951-b48e863b81ff)
 
-### Results
+#### Results
 * Waveform comparsion GTKWAVE and MAKERCHIP
     - Clock waveform named as clk_roh
     <p align="center">
