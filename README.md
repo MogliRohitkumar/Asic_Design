@@ -740,17 +740,14 @@ $ ./pre_synth_sim.out
 ![5](https://github.com/user-attachments/assets/751d9c82-e9e1-499c-a951-b48e863b81ff)
 
 
-![6](https://github.com/user-attachments/assets/e1297a86-c6ef-4510-ad90-f2ce82b600e7)
 
-![7](https://github.com/user-attachments/assets/5a894510-403e-46b4-bb73-40abd62434e1)
-
-![8](https://github.com/user-attachments/assets/a40c9a2b-6784-49a9-b37f-f1461a3a6111)
+![6](https://github.com/user-attachments/assets/79136bfb-c052-426e-9e0b-ab80d3d77494)
 
 
 * Waveform comparsion GTKWAVE and MAKERCHIP
     - Clock waveform named as clk_roh
     <p align="center">
-      <img src="https://github.com/user-attachments/assets/e1297a86-c6ef-4510-ad90-f2ce82b600e7" alt="Image 6" height="300" width="45%"/>
+      <img src="https://github.com/user-attachments/assets/79136bfb-c052-426e-9e0b-ab80d3d77494" alt="Image 6" height="300" width="45%"/>
       <img src="https://github.com/user-attachments/assets/a4cf2275-8b45-481f-9872-b06df6283d4b" alt="Image 7" height="300" width="45%"/>
     </p>
 
