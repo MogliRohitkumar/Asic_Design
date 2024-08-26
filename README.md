@@ -750,8 +750,8 @@ $ ./pre_synth_sim.out
 * Waveform comparsion GTKWAVE and MAKERCHIP
     - Clock waveform named as clk_roh
     <p align="center">
-      <img src="https://github.com/user-attachments/assets/e1297a86-c6ef-4510-ad90-f2ce82b600e7" alt="Image 6" width="45%"/>
-      <img src="https://github.com/user-attachments/assets/a4cf2275-8b45-481f-9872-b06df6283d4b" alt="Image 7" width="45%"/>
+      <img src="https://github.com/user-attachments/assets/e1297a86-c6ef-4510-ad90-f2ce82b600e7" alt="Image 6" height="300" width="45%"/>
+      <img src="https://github.com/user-attachments/assets/a4cf2275-8b45-481f-9872-b06df6283d4b" alt="Image 7" height="300" width="45%"/>
     </p>
 
     - Reset waveform
