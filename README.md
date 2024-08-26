@@ -709,7 +709,7 @@ $ pip3 install pyyaml click sandpiper-saas
 ![2](https://github.com/user-attachments/assets/918bbe09-3c0c-4981-9634-94ff7f4754e0)
 
 * Next, clone the following repository into your home directory and create a pre_synth_sim directory to store the output.
-* 
+  
 ```c
 $ cd ~
 
@@ -722,10 +722,21 @@ $ make pre_synth_sim
 
 ![3](https://github.com/user-attachments/assets/7130ccba-d3b2-4a44-a8b4-17b1649caf68)
 
-* 
+* Convert the TVL file into Verilog using SandPiper-SaaS by modifying the TVL file
+
+```c
+$ sandpiper-saas -i ./src/module/rvmyth.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/
+```
+
 ![4](https://github.com/user-attachments/assets/29cdb6b9-9569-453e-8f5e-2be056859c26)
 
-
+* To compile and simulate the RISC-V design, run the following code. The simulation results (e.g., pre_synth_sim.vcd) will be stored in the "output/pre_synth_sim directory."
+  
+```c
+$ iverilog -o output/pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module
+$ cd output
+$ ./pre_synth_sim.out
+```
 ![5](https://github.com/user-attachments/assets/751d9c82-e9e1-499c-a951-b48e863b81ff)
 
 
@@ -734,4 +745,24 @@ $ make pre_synth_sim
 ![7](https://github.com/user-attachments/assets/5a894510-403e-46b4-bb73-40abd62434e1)
 
 ![8](https://github.com/user-attachments/assets/a40c9a2b-6784-49a9-b37f-f1461a3a6111)
+
+
+* Waveform comparsion GTKWAVE and MAKERCHIP
+    - Clock waveform named as clk_roh
+    <p align="center">
+      <img src="https://github.com/user-attachments/assets/e1297a86-c6ef-4510-ad90-f2ce82b600e7" alt="Image 6" width="45%"/>
+      <img src="https://github.com/user-attachments/assets/a4cf2275-8b45-481f-9872-b06df6283d4b" alt="Image 7" width="45%"/>
+    </p>
+
+    - Reset waveform
+    <p align="center">
+      <img src="https://github.com/user-attachments/assets/5a894510-403e-46b4-bb73-40abd62434e1" alt="Image 8" width="45%"/>
+      <img src="https://github.com/user-attachments/assets/6feea98c-43a1-4303-9b37-22550ca4fa4c" alt="Image 9" width="45%"/>
+    </p>
+
+    - Final Result waveform
+    <p align="center">
+      <img src="https://github.com/user-attachments/assets/a40c9a2b-6784-49a9-b37f-f1461a3a6111" alt="Image 10" width="45%"/>
+      <img src="https://github.com/user-attachments/assets/44c08506-b829-4614-b345-47f5d7629b40" alt="Image 11" width="45%"/>
+    </p>
 
