@@ -739,11 +739,6 @@ $ ./pre_synth_sim.out
 ```
 ![5](https://github.com/user-attachments/assets/751d9c82-e9e1-499c-a951-b48e863b81ff)
 
-
-
-![6](https://github.com/user-attachments/assets/79136bfb-c052-426e-9e0b-ab80d3d77494)
-
-
 * Waveform comparsion GTKWAVE and MAKERCHIP
     - Clock waveform named as clk_roh
     <p align="center">
@@ -753,13 +748,13 @@ $ ./pre_synth_sim.out
 
     - Reset waveform
     <p align="center">
-      <img src="https://github.com/user-attachments/assets/5a894510-403e-46b4-bb73-40abd62434e1" alt="Image 8" width="45%"/>
-      <img src="https://github.com/user-attachments/assets/6feea98c-43a1-4303-9b37-22550ca4fa4c" alt="Image 9" width="45%"/>
+      <img src="https://github.com/user-attachments/assets/058c7bf9-30fe-4576-8bc5-fe5fba794368" alt="Image 8" height="300" width="45%"/>
+      <img src="https://github.com/user-attachments/assets/6feea98c-43a1-4303-9b37-22550ca4fa4c" alt="Image 9" height="300" width="45%"/>
     </p>
 
     - Final Result waveform
     <p align="center">
-      <img src="https://github.com/user-attachments/assets/a40c9a2b-6784-49a9-b37f-f1461a3a6111" alt="Image 10" width="45%"/>
-      <img src="https://github.com/user-attachments/assets/44c08506-b829-4614-b345-47f5d7629b40" alt="Image 11" width="45%"/>
+      <img src="https://github.com/user-attachments/assets/7be23ac6-4692-4f0c-8dc2-f84f27d77cdf" alt="Image 10" height="300" width="45%"/>
+      <img src="https://github.com/user-attachments/assets/44c08506-b829-4614-b345-47f5d7629b40" alt="Image 11" height="300" width="45%"/>
     </p>
 
