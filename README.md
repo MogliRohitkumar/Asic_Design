@@ -763,3 +763,52 @@ $ ./pre_synth_sim.out
       <img src="https://github.com/user-attachments/assets/44c08506-b829-4614-b345-47f5d7629b40" alt="Image 11" height="300" width="45%"/>
     </p>
 
+## LAB - 7
+### Objective
+* This task involves integrating and verifying the functionality of a custom RISC-V processor (rvmyth) within the BabySoC platform, using a set of specific tools for digital design and simulation.
+* To generate DAC and PPL waveform for the RISC-V processor.
+
+#### Phase-Locked Loop (PLL)
+* A Phase-Locked Loop (PLL) is an electronic control system that generates an output signal whose phase is related to the phase of an input signal.
+* It is commonly used in telecommunications, radio, and computing to synchronize signals, stabilize frequencies, and generate clocks for digital circuits.
+
+#### Download and Prepare Project Files
+* Download all files from BabySoc using below command.
+```c
+git clone https://github.com/manili/VSDBabySoC.git
+```
+![image](https://github.com/user-attachments/assets/5f8e6341-4aa9-4479-b39f-15a527a5f900)
+
+#### Edit the Top-Level Verilog Code 
+* I modified the top-level Verilog code for the vsdbabysoc to achieve the desired results.
+
+![image](https://github.com/user-attachments/assets/90c276ea-4a78-4519-80c0-559ca9f0af5c)
+
+#### Simulation procedure
+* Run the following command to perform functional simulation
+  
+```c
+cd BabySoC_Simulation
+iverilog -o ./pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module/
+./pre_synth_sim.out
+gtkwave pre_synth_sim.vcd
+```
+
+![image](https://github.com/user-attachments/assets/489a5293-12b3-4d5e-b28d-a28c8dec5f4f)
+
+#### Results
+* Waveform
+    - Clock waveform named as clk_roh along with PLL clock
+
+    ![image](https://github.com/user-attachments/assets/50643349-fe78-43b3-b7d2-2fceb5034a4e)
+
+    - Reset waveform
+    
+    ![image](https://github.com/user-attachments/assets/773c8556-518b-4a01-8f87-fa2e03abf2dd)
+
+    - Final Result waveform (along with PLL output signal, rvmyth 10-bit output signal, DAC output analog waveform)
+    
+    ![image](https://github.com/user-attachments/assets/46833ea6-1021-4476-aea7-6fe218c30b8e)
+  
+    ![image](https://github.com/user-attachments/assets/3471cb30-23f7-41be-bc3c-adb880107aa5)
+
