@@ -763,7 +763,7 @@ $ ./pre_synth_sim.out
       <img src="https://github.com/user-attachments/assets/44c08506-b829-4614-b345-47f5d7629b40" alt="Image 11" height="300" width="45%"/>
     </p>
 
-## LAB - 7
+## LAB - 8
 ### Objective
 * This task involves integrating and verifying the functionality of a custom RISC-V processor (rvmyth) within the BabySoC platform, using a set of specific tools for digital design and simulation.
 * To generate DAC and PPL waveform for the RISC-V processor.
