@@ -814,12 +814,11 @@ gtkwave pre_synth_sim.vcd
 
 ## LAB - 8
 ### Day 1:Introduction to Verilog RTL design and Synthesis
-In digital circuit design, the Register-Transfer Level (RTL) models data flow between hardware registers and logic operations using Hardware Description Languages (HDL). These high-level models are transformed into physical hardware designs.
-
-Simulation, using tools like Icarus Verilog (iverilog), verifies circuit designs by replicating device behavior. A test bench applies input stimuli (test vectors) to validate the design's functionality and ensure it meets specifications.
+- In digital circuit design, the Register-Transfer Level (RTL) models data flow between hardware registers and logic operations using Hardware Description Languages (HDL). These high-level models are transformed into physical hardware designs.
+- Simulation, using tools like Icarus Verilog (iverilog), verifies circuit designs by replicating device behavior. A test bench applies input stimuli (test vectors) to validate the design's functionality and ensure it meets specifications.
 
 #### HOW SIMULATOR WORKS
-The simulator monitors input signals and evaluates the output whenever an input change occurs. If there is no change in the input, the output remains unevaluated, and the simulator does not update it.
+- The simulator monitors input signals and evaluates the output whenever an input change occurs. If there is no change in the input, the output remains unevaluated, and the simulator does not update it.
 ![image](https://github.com/user-attachments/assets/5965d5c9-aace-4720-8fa8-175e1c6c731d)
 
 Start by executing the following commands:
@@ -834,7 +833,7 @@ cd sky130RTLDesignAndSynthesisWorkshop
 
 ![image](https://github.com/user-attachments/assets/1d7969ce-db59-43f3-a6c6-4c68a579b325)
 
-To simulate the Verilog code in 'good_mux.v', follow these steps: First, compile the design and testbench using the provided command, which checks for syntax errors and generates an executable 'a.out' if successful. Running 'a.out' produces a VCD file that logs input and output changes during simulation. Finally, use GTKWave to view and analyze the waveform data in the VCD file.
+- To simulate the Verilog code in 'good_mux.v', follow these steps: First, compile the design and testbench using the provided command, which checks for syntax errors and generates an executable 'a.out' if successful. Running 'a.out' produces a VCD file that logs input and output changes during simulation. Finally, use GTKWave to view and analyze the waveform data in the VCD file.
 
 ```c
 iverilog good_mux.v tb_good_mux.v
@@ -948,6 +947,232 @@ write_verilog good_mux_netlist.v
 write_verilog -noattr good_mux_netlist.v
 ```
 ![image](https://github.com/user-attachments/assets/23752d05-9c28-4121-ae77-2a95387d2adf)
+
+![image](https://github.com/user-attachments/assets/3783d482-1d7c-4174-b63c-82aece5b02d1)
+
+### Day 2:Timing libs, hierarchical vs flat synthesis and efficient flop coding styles
+- Execute the following commands to check the contents of the .lib file:
+```c
+cd ASIC/sky130RTLDesignAndSynthesisWorkshop/lib/
+vim sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+![image](https://github.com/user-attachments/assets/fead9ab8-2bfb-4dc8-8c30-c428cbc2c4eb)
+
+#### Cell library
+- A standard cell library is a collection of characterized logic gates that can be used to implement digital circuits. The Liberty (.lib) files contain PVT parameters (Process, Voltage, Temperature) that can significantly impact circuit performance. Variations in manufacturing, changes in voltage, and fluctuations in temperature all play a role in affecting how the circuit functions.
+
+![image](https://github.com/user-attachments/assets/949ab029-1085-4909-a688-ce4fe23c22a8)
+
+![image](https://github.com/user-attachments/assets/d4eaeaab-73c0-438d-a52f-8d0f208511d1)
+
+![image](https://github.com/user-attachments/assets/7d635831-409d-4196-a786-cb27f2b02ab0)
+
+We can observe that:
+- and2_0 -- takes the least area, more delay and low power.
+- and2_1 -- takes more area, less delay and high power.
+- and2_2 -- takes the largest area, larger delay and highest power.
+
+#### Hierarchial synthesis vs Flat synthesis
+- Hierarchical synthesis breaks down a complex design into sub-modules, synthesizing each separately to produce gate-level netlists before integration. This approach improves organization, supports module reuse, and allows incremental changes without affecting the whole system.
+- In contrast, flat synthesis treats the entire design as one unit, producing a single netlist without structural modularity. While it can optimize some designs, flat synthesis is harder to maintain, analyze, and modify.
+
+#### Hierarchial synthesis
+- Consider the verilog file multiple_modules.v which is given in the verilog_files directory
+```c
+module sub_module2 (input a, input b, output y);
+    assign y = a | b;
+endmodule
+
+module sub_module1 (input a, input b, output y);
+    assign y = a&b;
+endmodule
+
+
+module multiple_modules (input a, input b, input c , output y);
+    wire net1;
+    sub_module1 u1(.a(a),.b(b),.y(net1));  //net1 = a&b
+    sub_module2 u2(.a(net1),.b(c),.y(y));  //y = net1|c ,ie y = a&b + c;
+endmodule
+```
+
+- Run the follwing commands 
+```c
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_modules.v
+synth -top multiple_modules
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show multiple_modules
+write_verilog -noattr multiple_modules_hier.v
+!vim multiple_modules_hier.v
+```
+##### Statistics
+![image](https://github.com/user-attachments/assets/05968204-9b05-417d-ba52-023d76c8b102)
+
+#### Schematics
+![image](https://github.com/user-attachments/assets/efd0b193-a2f0-4cb9-acf0-c5486cadb8cb)
+
+```c
+/* Generated by Yosys 0.44+60 (git sha1 c25448f1d, g++ 11.4.0-1ubuntu1~22.04 -fPIC -O3) */
+
+module multiple_modules(a, b, c, y);
+  input a;
+  wire a;
+  input b;
+  wire b;
+  input c;
+  wire c;
+  wire net1;
+  output y;
+  wire y;
+  sub_module1 u1 (
+    .a(a),
+    .b(b),
+    .y(net1)
+  );
+  sub_module2 u2 (
+    .a(net1),
+    .b(c),
+    .y(y)
+  );
+endmodule
+
+module sub_module1(a, b, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  input a;
+  wire a;
+  input b;
+  wire b;
+  output y;
+  wire y;
+  sky130_fd_sc_hd__and2_0 _3_ (
+    .A(_1_),
+    .B(_0_),
+    .X(_2_)
+  );
+  assign _1_ = b;
+  assign _0_ = a;
+  assign y = _2_;
+endmodule
+
+module sub_module2(a, b, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  input a;
+  wire a;
+  input b;
+  wire b;
+  output y;
+  wire y;
+  sky130_fd_sc_hd__or2_0 _3_ (
+    .A(_1_),
+    .B(_0_),
+    .X(_2_)
+  );
+  assign _1_ = b;
+  assign _0_ = a;
+  assign y = _2_;
+endmodule
+```
+
+#### Flat synthesis
+- Run the follwing commands 
+```c
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_modules.v
+synth -top multiple_modules
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+flatten
+show
+write_verilog -noattr multiple_modules_flat.v
+!vim multiple_modules_flat.v
+```
+##### Statistics
+![image](https://github.com/user-attachments/assets/1d46f9cc-2c96-45d7-92fb-26f8bbc1753a)
+
+#### Schematics
+![image](https://github.com/user-attachments/assets/7f22f3c3-3542-40da-ac4e-a86436aaedc6)
+
+```c
+  /* Generated by Yosys 0.44+60 (git sha1 c25448f1d, g++ 11.4.0-1ubuntu1~22.04 -fPIC -O3) */
+
+module multiple_modules(a, b, c, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  wire _3_;
+  wire _4_;
+  wire _5_;
+  input a;
+  wire a;
+  input b;
+  wire b;
+  input c;
+  wire c;
+  wire net1;
+  wire \u1.a ;
+  wire \u1.b ;
+  wire \u1.y ;
+  wire \u2.a ;
+  wire \u2.b ;
+  wire \u2.y ;
+  output y;
+  wire y;
+  sky130_fd_sc_hd__and2_0 _6_ (
+    .A(_1_),
+    .B(_0_),
+    .X(_2_)
+  );
+  sky130_fd_sc_hd__or2_0 _7_ (
+    .A(_4_),
+    .B(_3_),
+    .X(_5_)
+  );
+  assign _4_ = \u2.b ;
+  assign _3_ = \u2.a ;
+  assign \u2.y  = _5_;
+  assign \u2.a  = net1;
+  assign \u2.b  = c;
+  assign y = \u2.y ;
+  assign _1_ = \u1.b ;
+  assign _0_ = \u1.a ;
+  assign \u1.y  = _2_;
+  assign \u1.a  = a;
+  assign \u1.b  = b;
+  assign net1 = \u1.y ;
+endmodule
+```
+
+#### Sub Module Level Synthesis
+- Run the follwing commands 
+```c
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog multiple_modules.v 
+synth -top sub_module
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+```
+##### Statistics
+![image](https://github.com/user-attachments/assets/1d46f9cc-2c96-45d7-92fb-26f8bbc1753a)
+
+#### Schematics
+![image](https://github.com/user-attachments/assets/bf12f41d-05f4-4585-815c-208b3d70924a)
+
+#### Flop coding styles and optimization
+- Flip-flops are essential in sequential logic circuits, storing intermediate values and preventing glitches. They ensure inputs to combinational circuits remain stable until the clock edge, enabling reliable system operation.
+
+#### Asynchronous Reset Flip-Flop
+
+
+
+
+
+
 
 
 
