@@ -2360,10 +2360,11 @@ write_verilog -noattr counter_opt_net.v
 ```
 
 #### Statistics
-![image](https://github.com/user-attachments/assets/a1a2e3e5-1d7d-40aa-9a5e-e80bca23498f)
+![image](https://github.com/user-attachments/assets/f9a96c91-8f86-4ace-a753-c3697f8d800b)
+
 
 #### Schematics
-![image](https://github.com/user-attachments/assets/e0db9093-c75f-4dba-9dbc-4e52a0e500ca)
+![image](https://github.com/user-attachments/assets/70bc5a6c-d0b7-4d73-9f75-1af7a3c598e2)
 
 
 
