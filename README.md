@@ -812,3 +812,33 @@ gtkwave pre_synth_sim.vcd
   
     ![image](https://github.com/user-attachments/assets/3471cb30-23f7-41be-bc3c-adb880107aa5)
 
+## LAB - 8
+### Day 1:Introduction to Verilog RTL design and Synthesis
+In digital circuit design, the Register-Transfer Level (RTL) models data flow between hardware registers and logic operations using Hardware Description Languages (HDL). These high-level models are transformed into physical hardware designs.
+
+Simulation, using tools like Icarus Verilog (iverilog), verifies circuit designs by replicating device behavior. A test bench applies input stimuli (test vectors) to validate the design's functionality and ensure it meets specifications.
+
+#### HOW SIMULATOR WORKS
+The simulator monitors input signals and evaluates the output whenever an input change occurs. If there is no change in the input, the output remains unevaluated, and the simulator does not update it.
+![image](https://github.com/user-attachments/assets/5965d5c9-aace-4720-8fa8-175e1c6c731d)
+
+Start by executing the following commands:
+```c
+mkdir ASIC
+cd ASIC
+git clone https://github.com/kunalg123/vsdflow.git
+git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+cd sky130RTLDesignAndSynthesisWorkshop
+```
+![image](https://github.com/user-attachments/assets/d7a05c71-d492-4a50-825f-eb3d09ef2277)
+
+![image](https://github.com/user-attachments/assets/1d7969ce-db59-43f3-a6c6-4c68a579b325)
+
+To simulate the Verilog code in 'good_mux.v', follow these steps: First, compile the design and testbench using the provided command, which checks for syntax errors and generates an executable 'a.out' if successful. Running 'a.out' produces a VCD file that logs input and output changes during simulation. Finally, use GTKWave to view and analyze the waveform data in the VCD file.
+
+```c
+iverilog good_mux.v tb_good_mux.v
+./a.out
+gtkwave tb_good_mux.vcd
+```
+
