@@ -1409,9 +1409,9 @@ endmodule
 ### Day 3:Optimizing Combinational and Sequential Logic
 - There are two types of optimisations: Combinational and Sequential optimisations. These optimisations are done inorder to achieve designs that are efficient in terms of area, power, and performance.
 
-- Combinational Optimization
-        - The techiniques used are:
-           - Constant Propagation (Direct Optimisation)
-           - Boolean Logic Optimisation (using K-Map or Quine McCluskey method)
+* Combinational Optimization
+    * The techiniques used are:
+        * Constant Propagation (Direct Optimisation)
+        * Boolean Logic Optimisation (using K-Map or Quine McCluskey method)
 
 
