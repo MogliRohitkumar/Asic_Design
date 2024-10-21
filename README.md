@@ -2479,7 +2479,7 @@ gtkwave tb_counter_opt.vcd
 #### GTK Wave
 ![image](https://github.com/user-attachments/assets/8179df55-1e88-4ec4-803a-63a9d273433c)
 
-#### Day 4: GLS, blocking vs non-blocking and Synthesis-Simulation mismatch.
+### Day 4: GLS, blocking vs non-blocking and Synthesis-Simulation mismatch.
 - Gate Level Simulation (GLS) is essential for verifying digital circuits by simulating the synthesized netlist to check logical accuracy and timing using a testbench. It ensures the synthesis process hasn't introduced errors and confirms the design meets performance requirements.
 - Sensitivity lists play a critical role in proper circuit behavior. Missing entries in a sensitivity list can lead to unintended latches. Additionally, blocking and non-blocking assignments in always blocks behave differently, and improper use of blocking assignments can create latches, causing discrepancies between synthesis and simulation. Careful review of sensitivity lists and assignment usage is necessary to avoid these issues.
 
