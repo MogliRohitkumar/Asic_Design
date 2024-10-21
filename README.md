@@ -889,3 +889,22 @@ module tb_good_mux;
   always #55 i1 = ~i1;
 endmodule
 ```
+#### Yosys SETUP
+![image](https://github.com/user-attachments/assets/5f80e662-5c63-4f53-8e00-4799b2afd65e)
+
+#### Logic Synthesis
+- RTL design involves describing the required functionality in HDL.
+- Synthesis translates the RTL design into a gate-level netlist, connecting gates as per the design.
+- The Liberty (.lib) file contains logical modules, including various types of logic gates (e.g., AND, OR) with different input sizes and speed variants. Fast gates offer high performance but consume more area and power, while slower gates help with hold time but can reduce performance. Optimal gate selection during synthesis balances area, power, and timing constraints.
+
+![image](https://github.com/user-attachments/assets/522de956-f124-495a-b927-58865f3ebd4a)
+
+- Cell delay in a digital circuit is influenced by load capacitance—faster charging or discharging reduces delay. Wider transistors speed up this process by providing more current, but increase power consumption and area. Narrower transistors save area and power but increase cell delay. Thus, minimizing cell delay requires balancing area, power, and delay.
+  
+![image](https://github.com/user-attachments/assets/744bb8de-9287-4fe6-af9f-2898fbf39a23)
+
+#### Yosys flow
+```c
+yosys
+```
+
