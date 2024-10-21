@@ -1167,13 +1167,251 @@ show
 - Flip-flops are essential in sequential logic circuits, storing intermediate values and preventing glitches. They ensure inputs to combinational circuits remain stable until the clock edge, enabling reliable system operation.
 
 #### Asynchronous Reset Flip-Flop
+- An asynchronous reset flip-flop immediately resets its output (q) when the reset signal is asserted, regardless of the clock state. This feature is useful for quick initialization, enabling rapid response to system condition changes.
+
+- Verilog Code 
+```c
+module dff_asyncres (
+    input clk,
+    input async_reset,
+    input d,
+    output reg q
+);
+always @(posedge clk or posedge async_reset) begin
+    if (async_reset)
+        q <= 1'b0;  // Reset output to 0 when async_reset is high
+    else
+        q <= d;     // On clock edge, capture the input data
+end
+endmodule
+```
+
+- Run the following commands
+```c
+iverilog dff_asyncres.v tb_dff_asyncres.v
+./a.out
+gtkwave tb_dff_asyncres.vcd
+```
+-GTK Wave
+![image](https://github.com/user-attachments/assets/6a751916-b3e4-4a03-b5c2-36490c382a80)
+
+- Netlist generation
+```c
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_asyncres.v
+synth -top dff_asyncres
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+- Statistics
+![image](https://github.com/user-attachments/assets/7b0a0a8e-146e-4b1d-9678-e955d28b36c8)
+
+- Schematics
+![image](https://github.com/user-attachments/assets/db48e2fc-edc1-47f2-b91b-622015c2d533)
+
+#### Synchronous Reset Flip-Flop
+-A synchronous reset flip-flop updates its output only on the clock's rising edge, with the reset occurring in sync with the clock signal. This ensures predictable behavior within each clock cycle.
+
+- Verilog Code 
+```c
+module dff_syncres (
+    input clk,
+    input sync_reset,
+    input d,
+    output reg q
+);
+always @(posedge clk) begin
+    if (sync_reset)
+        q <= 1'b0;  // Reset output to 0 during the clock edge if sync_reset is high
+    else
+        q <= d;     // Capture the input data on the clock edge
+end
+endmodule
+```
+
+- Run the following commands
+```c
+iverilog dff_syncres.v tb_dff_syncres.v
+./a.out
+gtkwave tb_dff_syncres.vcd
+```
+-GTK Wave
+![image](https://github.com/user-attachments/assets/2778a96b-bd6b-4c81-862e-77e4a8d7a161)
+
+- Netlist generation
+```c
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_syncres.v
+synth -top dff_syncres
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+- Statistics
+![image](https://github.com/user-attachments/assets/2077adc5-6192-4097-9777-a57f3e319167)
+
+- Schematics
+![image](https://github.com/user-attachments/assets/70d7d58e-6809-4c31-b1c7-dd374bcfd7f6)
+
+#### Asynchronous Set Flip-Flop
+-An asynchronous set flip-flop instantly drives its output (q) to a high state when the set signal is activated, responding immediately to changes in the set signal regardless of the clock.
+
+- Verilog Code 
+```c
+module dff_async_set (
+    input clk,
+    input async_set,
+    input d,
+    output reg q
+);
+always @(posedge clk or posedge async_set) begin
+    if (async_set)
+        q <= 1'b1;  // Set output to 1 when async_set is high
+    else
+        q <= d;     // Capture the input data on the clock edge
+end
+endmodule
+```
+
+- Run the following commands
+```c
+iverilog dff_async_set.v tb_dff_async_set.v
+./a.out
+gtkwave tb_dff_async_set.vcd
+```
+-GTK Wave
+![image](https://github.com/user-attachments/assets/0448e9ad-0560-4e1b-93f2-b040de587b18)
+
+- Netlist generation
+```c
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_async_set.v
+synth -top dff_async_set
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+- Statistics
+![image](https://github.com/user-attachments/assets/99ea1ad6-4b3c-4606-9c8e-b03cde5ea0fd)
 
 
+- Schematics
+![image](https://github.com/user-attachments/assets/49eecd80-e71c-42d0-a4fb-5fe0b826e7af)
 
+#### Design Optimizations
+- Example: Multiplication by 2
 
+- Verilog code
+```c
+module mul2 (
+    input [2:0] a,
+    output [3:0] y
+);
+assign y = a * 2;  // Multiply input by 2
+endmodule
+```
+- Truth Table
+|a2 | a1 | a0 | y3 | y2 | y1 | y0 |
+|---|----|----|----|----|----|----|
+| 0 | 0  | 0  | 0  | 0  | 0  | 0  |
+| 0 | 0  | 1  | 0  | 0  | 1  | 0  |
+| 0 | 1  | 0  | 0  | 1  | 0  | 0  |
+| 0 | 1  | 1  | 0  | 1  | 1  | 0  |
+| 1 | 0  | 0  | 1  | 0  | 0  | 0  |
+| 1 | 0  | 1  | 1  | 0  | 1  | 0  |
+| 1 | 1  | 0  | 1  | 1  | 0  | 0  |
+| 1 | 1  | 1  | 1  | 1  | 1  | 0  |
 
+#### Optimization Insight
+- Multiplying a number by 2 can be done by left-shifting the input bits and appending a zero in the least significant bit (LSB), eliminating the need for extra hardware and simplifying the design while saving resources.
 
+- Run the following commands
+```c
+yosys
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mult_2.v
+synth -top mult2
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show 
+write_verilog -noattr mult_2_net.v
+!vim mult_2_net.v
+```
+- Statistics
+![image](https://github.com/user-attachments/assets/f29a5b68-cb18-4217-9715-34054ff1b708)
 
+- Schematics
+![image](https://github.com/user-attachments/assets/40f17679-6330-4b5d-ad1e-07215f95b0fc)
 
+-Netlist Code
+```c
+/* Generated by Yosys 0.44+60 (git sha1 c25448f1d, g++ 11.4.0-1ubuntu1~22.04 -fPIC -O3) */
+
+module mul2(a, y);
+  input [2:0] a;
+  wire [2:0] a;
+  output [3:0] y;
+  wire [3:0] y;
+  assign y = { a, 1'h0 };
+endmodule
+```
+- Example: Multiplication by 9
+
+- Verilog code
+```c
+/* Generated by Yosys 0.44+60 (git sha1 c25448f1d, g++ 11.4.0-1ubuntu1~22.04 -fPIC -O3) */
+
+module mul2(a, y);
+  input [2:0] a;
+  wire [2:0] a;
+  output [3:0] y;
+  wire [3:0] y;
+  assign y = { a, 1'h0 };
+endmodule
+```
+
+#### Optimization Insight
+- In this design the 3-bit input number "a" is multiplied by 9 i.e (a9) which can be re-written as (a8) + a . The term (a8) is nothing but a left shifting the number a by three bits. Consider that a = a2 a1 a0. (a8) results in a2 a1 a0 0 0 0. (a9)=(a8)+a = a2 a1 a0 a2 a1 a0 = aa(in 6 bit format). Hence in this case no hardware realization is required. The synthesized netlist of this design is shown below:
+
+- Run the following commands
+```c
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mult_8.v
+synth -top mult8
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr mult_8_net.v
+```
+- Statistics
+![image](https://github.com/user-attachments/assets/ff96829c-19ab-41ed-a808-0c258eb1e550)
+
+- Schematics
+![image](https://github.com/user-attachments/assets/f8f84fb4-15c2-4457-bb65-f138f52c8681)
+
+-Netlist Code
+```c
+/* Generated by Yosys 0.44+60 (git sha1 c25448f1d, g++ 11.4.0-1ubuntu1~22.04 -fPIC -O3) */
+
+module mult8(a, y);
+  input [2:0] a;
+  wire [2:0] a;
+  output [5:0] y;
+  wire [5:0] y;
+  assign y = { a, a };
+endmodule
+```
+
+### Day 3:Optimizing Combinational and Sequential Logic
+- There are two types of optimisations: Combinational and Sequential optimisations. These optimisations are done inorder to achieve designs that are efficient in terms of area, power, and performance.
+
+- Combinational Optimization
+        - The techiniques used are:
+           - Constant Propagation (Direct Optimisation)
+           - Boolean Logic Optimisation (using K-Map or Quine McCluskey method)
 
 
