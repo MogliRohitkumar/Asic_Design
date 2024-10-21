@@ -907,4 +907,48 @@ endmodule
 ```c
 yosys
 ```
+![image](https://github.com/user-attachments/assets/08d52fd6-1a27-48eb-b6af-ff6436215624)
+
+```c
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+![image](https://github.com/user-attachments/assets/70f0dec7-224a-442c-ad8e-5ec3d69c0b66)
+
+```c
+read_verilog good_mux.v
+```
+![image](https://github.com/user-attachments/assets/06286ce4-05e1-4f01-b477-d5d7429b660f)
+
+```c
+synth -top good_mux
+```
+![image](https://github.com/user-attachments/assets/bd39936a-9fdf-4da9-a935-3cfaa28cffe1)
+
+```c
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+![image](https://github.com/user-attachments/assets/6b8f5060-8dbc-4f81-a129-4b1a83d66cc5)
+
+```c
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+![image](https://github.com/user-attachments/assets/1f33a43a-9b98-4ca9-91ac-7fba5b94d19d)
+
+```c
+show
+```
+![image](https://github.com/user-attachments/assets/cf652d9e-8984-4a11-a736-af41e19d9984)
+
+```c
+write_verilog good_mux_netlist.v
+```
+![image](https://github.com/user-attachments/assets/98a6c68c-dc9c-4a84-a82d-5eae67c3e08b)
+
+```c
+write_verilog -noattr good_mux_netlist.v
+```
+![image](https://github.com/user-attachments/assets/23752d05-9c28-4121-ae77-2a95387d2adf)
+
+
+
 
