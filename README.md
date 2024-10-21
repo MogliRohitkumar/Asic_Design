@@ -1417,5 +1417,5 @@ endmodule
 #### Constant Propagation
 ![image](https://github.com/user-attachments/assets/5323a99c-97a9-4a8f-a1b4-fcac87df418c)
 
-- Example 1:
+Example 1:
 #### Verilog code:
