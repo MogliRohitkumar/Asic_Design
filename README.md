@@ -812,7 +812,7 @@ gtkwave pre_synth_sim.vcd
   
     ![image](https://github.com/user-attachments/assets/3471cb30-23f7-41be-bc3c-adb880107aa5)
 
-## LAB - 8
+## LAB - 9
 ### Day 1:Introduction to Verilog RTL design and Synthesis
 - In digital circuit design, the Register-Transfer Level (RTL) models data flow between hardware registers and logic operations using Hardware Description Languages (HDL). These high-level models are transformed into physical hardware designs.
 - Simulation, using tools like Icarus Verilog (iverilog), verifies circuit designs by replicating device behavior. A test bench applies input stimuli (test vectors) to validate the design's functionality and ensure it meets specifications.
@@ -2723,3 +2723,54 @@ gtkwave tb_blocking_caveat.vcd
 
 #### GTK Wave
 ![image](https://github.com/user-attachments/assets/1261da81-d41e-4fcb-9150-541bb43d8970)
+
+## LAB - 10
+###
+![image](https://github.com/user-attachments/assets/e2869824-0c5a-479e-ac61-7b46e87320cb)
+
+![image](https://github.com/user-attachments/assets/6f5ee795-052f-47d8-8394-b9ec9da6f940)
+
+![image](https://github.com/user-attachments/assets/3ee5b6d6-6a7d-46e8-bb8a-fa933296f36e)
+
+```c
+read_liberty -lib /home/rohitmogli/ASIC/sky130RTLDesignAndSynthesisWorkshop/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+![image](https://github.com/user-attachments/assets/eb8e7e4d-d415-414b-bc65-b81e135226a1)
+
+```c
+read_verilog clk_gate.v
+```
+![image](https://github.com/user-attachments/assets/f3ddff63-fe9a-4466-bee9-2acd824ab13a)
+
+```c
+read_verilog rvmyth.v
+```
+
+![image](https://github.com/user-attachments/assets/6e9ed836-e6d3-4119-a0b5-9d32c945fb48)
+
+```c
+synth -top rvmyth
+```
+
+![image](https://github.com/user-attachments/assets/c117f7f5-798d-446f-b13b-1f8a35eedc6c)
+
+```c
+abc -liberty /home/rohitmogli/ASIC/sky130RTLDesignAndSynthesisWorkshop/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+
+![image](https://github.com/user-attachments/assets/31b71116-b57c-4694-9faf-307e1552ef91)
+
+```c
+write_verilog -noattr rvmyth_netlist.v
+```
+
+![image](https://github.com/user-attachments/assets/7d54d30c-591a-46ba-9813-e8fb42fcdf48)
+
+```c
+iverilog /home/rohitmogli/ASIC/sky130RTLDesignAndSynthesisWorkshop/my_lib/verilog_model/primitives.v /home/rohitmogli/ASIC/sky130RTLDesignAndSynthesisWorkshop/my_lib/verilog_model/sky130_fd_sc_hd.v rvmyth.v testbench.v vsdbabysoc.v avsddac.v avsdpll.v clk_gate.v
+./a.out
+gtkwave dump.vcd
+```
+![image](https://github.com/user-attachments/assets/6e21a078-aee8-43cc-95d5-d3736930ce87)
+
+
