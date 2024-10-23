@@ -2726,7 +2726,7 @@ gtkwave tb_blocking_caveat.vcd
 
 ## LAB - 10
 ### Synthesizing RISC-V and comparing output with functional (RTL) simulation.
-#### Functional Simulations
+### Functional Simulations
 - Run the following commands
 ```c
 cd BabySoC_Simulation
@@ -2782,6 +2782,20 @@ write_verilog -noattr rvmyth_netlist.v
 exit
 ```
 ![image](https://github.com/user-attachments/assets/7d54d30c-591a-46ba-9813-e8fb42fcdf48)
+- Netlist
+```c
+
+```
+
+-Realisation
+![image](https://github.com/user-attachments/assets/b3f3fe33-caf7-4bd7-8fa5-fb62b1f7b548)
+
+![2](https://github.com/user-attachments/assets/902dc284-73b4-4993-8539-07649a1e519c)
+
+![3](https://github.com/user-attachments/assets/9954fa5c-d8a3-4674-b5c1-53a4749af4ca)
+
+![4](https://github.com/user-attachments/assets/7ce46e25-5232-461e-a6c7-552d1ff3e2bf)
+
 
 ```c
 iverilog /home/rohitmogli/ASIC/sky130RTLDesignAndSynthesisWorkshop/my_lib/verilog_model/primitives.v /home/rohitmogli/ASIC/sky130RTLDesignAndSynthesisWorkshop/my_lib/verilog_model/sky130_fd_sc_hd.v rvmyth.v testbench.v vsdbabysoc.v avsddac.v avsdpll.v clk_gate.v
@@ -2790,6 +2804,8 @@ gtkwave dump.vcd
 ```
 ![image](https://github.com/user-attachments/assets/6e21a078-aee8-43cc-95d5-d3736930ce87)
 
+- Results
+  
 ![image](https://github.com/user-attachments/assets/0f0059ea-ce8a-4c5c-9c1b-8f416214bf95)
 
 ![image](https://github.com/user-attachments/assets/bacd45b4-3bc6-4784-b3b6-de1c9cfd58da)
