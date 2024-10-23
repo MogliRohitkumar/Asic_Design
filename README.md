@@ -2737,9 +2737,12 @@ gtkwave pre_synth_sim.vcd
 ![image](https://github.com/user-attachments/assets/e2869824-0c5a-479e-ac61-7b46e87320cb)
 
 -Results
-![image](https://github.com/user-attachments/assets/6f5ee795-052f-47d8-8394-b9ec9da6f940)
 
-![image](https://github.com/user-attachments/assets/3ee5b6d6-6a7d-46e8-bb8a-fa933296f36e)
+![6](https://github.com/user-attachments/assets/2f1323f1-a563-4109-8627-25fd4f77edad)
+
+
+![7](https://github.com/user-attachments/assets/9ff870c6-8616-4823-a34c-0a3943987aeb)
+
 
 ### Synthesis
 #### Steps
@@ -2783,9 +2786,9 @@ exit
 ```
 ![image](https://github.com/user-attachments/assets/7d54d30c-591a-46ba-9813-e8fb42fcdf48)
 - Netlist
-```c
 
-```
+![image](https://github.com/user-attachments/assets/a23026e4-959c-4c31-a587-42352618f192)
+
 
 -Realisation
 ![image](https://github.com/user-attachments/assets/b3f3fe33-caf7-4bd7-8fa5-fb62b1f7b548)
