@@ -2725,14 +2725,31 @@ gtkwave tb_blocking_caveat.vcd
 ![image](https://github.com/user-attachments/assets/1261da81-d41e-4fcb-9150-541bb43d8970)
 
 ## LAB - 10
-###
+### Synthesizing RISC-V and comparing output with functional (RTL) simulation.
+#### Functional Simulations
+- Run the following commands
+```c
+cd BabySoC_Simulation
+iverilog -o ./pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module/
+./pre_synth_sim.out
+gtkwave pre_synth_sim.vcd
+```
 ![image](https://github.com/user-attachments/assets/e2869824-0c5a-479e-ac61-7b46e87320cb)
 
+-Results
 ![image](https://github.com/user-attachments/assets/6f5ee795-052f-47d8-8394-b9ec9da6f940)
 
 ![image](https://github.com/user-attachments/assets/3ee5b6d6-6a7d-46e8-bb8a-fa933296f36e)
 
+### Synthesis
+#### Steps
+- Now go the following Directory:
 ```c
+  cd /home/rohitmogli/VLSI/sky130RTLDesignAndSynthesisWorkshop/src/module
+```
+- Run the following commands
+```c
+yosys
 read_liberty -lib /home/rohitmogli/ASIC/sky130RTLDesignAndSynthesisWorkshop/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 ```
 ![image](https://github.com/user-attachments/assets/eb8e7e4d-d415-414b-bc65-b81e135226a1)
@@ -2762,8 +2779,8 @@ abc -liberty /home/rohitmogli/ASIC/sky130RTLDesignAndSynthesisWorkshop/lib/sky13
 
 ```c
 write_verilog -noattr rvmyth_netlist.v
+exit
 ```
-
 ![image](https://github.com/user-attachments/assets/7d54d30c-591a-46ba-9813-e8fb42fcdf48)
 
 ```c
