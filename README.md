@@ -2816,8 +2816,46 @@ gtkwave dump.vcd
 
 ![image](https://github.com/user-attachments/assets/bacd45b4-3bc6-4784-b3b6-de1c9cfd58da)
 
+## LAB - 11
+### STA Using Clock Time Of 11.3ns
 
+```c
+set PERIOD 10.65
 
+set_units -time ns
+
+create_clock [get_pins {pll/CLK}] -name clk -period $PERIOD
+set_clock_uncertainty -setup  [expr $PERIOD * 0.05] [get_clocks clk]
+set_clock_transition [expr $PERIOD * 0.05] [get_clocks clk]
+set_clock_uncertainty -hold [expr $PERIOD * 0.08] [get_clocks clk]
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENb_CP]
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENb_VCO]
+set_input_transition [expr $PERIOD * 0.08] [get_ports REF]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VCO_IN]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VREFH]
+```
+#### Run the following commands
+```c
+cd VSDBabySoc/src
+sta
+read_liberty -min ./lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_liberty -min ./lib/avsdpll.lib
+read_liberty -min ./lib/avsddac.lib
+read_liberty -max ./lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_liberty -max ./lib/avsdpll.lib
+read_liberty -max ./lib/avsddac.lib
+read_verilog ../output/synth/vsdbabysoc.synth.v
+link_design vsdbabysoc
+read_sdc ./sdc/vsdbabysoc_synthesis.sdc
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+![image](https://github.com/user-attachments/assets/a1c3bcd8-d33f-4d95-becb-4c3213a6b0f4)
+
+#### Setup time
+![image](https://github.com/user-attachments/assets/c5de677f-e5da-4b58-a152-1832c6220d26)
+
+#### Hold time
+![image](https://github.com/user-attachments/assets/28b39051-6c36-495d-8872-da1becc2a102)
 
 
 
