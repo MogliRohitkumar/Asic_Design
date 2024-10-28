@@ -2818,9 +2818,9 @@ gtkwave dump.vcd
 
 ## LAB - 11
 ### STA Using Clock Time Of 11.3ns
-
+#### The contents of VSDBabySoc/src/sdc/vsdbabysoc_synthesis.sdc
 ```c
-set PERIOD 10.65
+set PERIOD 11.3
 
 set_units -time ns
 
