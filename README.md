@@ -2858,5 +2858,65 @@ report_checks -path_delay min_max -format full_clock_expanded -digits 4
 ![image](https://github.com/user-attachments/assets/28b39051-6c36-495d-8872-da1becc2a102)
 
 
+## LAB - 12
+### STA comparison for various sky libraries :
+#### Organize all the sky library files into a folder named timing_libs. Next, navigate to the VSDBabySoC/src directory and create a Tcl script named sta_across_pvt.tcl with the following content:
+```c
+set list_of_lib_files(1) "sky130_fd_sc_hd__ff_100C_1v65.lib"
+set list_of_lib_files(2) "sky130_fd_sc_hd__ff_100C_1v95.lib"
+set list_of_lib_files(3) "sky130_fd_sc_hd__ff_n40C_1v56.lib"
+set list_of_lib_files(4) "sky130_fd_sc_hd__ff_n40C_1v65.lib"
+set list_of_lib_files(5) "sky130_fd_sc_hd__ff_n40C_1v76.lib"
+set list_of_lib_files(6) "sky130_fd_sc_hd__ff_n40C_1v95.lib"
+set list_of_lib_files(7) "sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part1"
+set list_of_lib_files(8) "sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part2"
+set list_of_lib_files(9) "sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part3"
+set list_of_lib_files(10) "sky130_fd_sc_hd__ss_100C_1v40.lib"
+set list_of_lib_files(11) "sky130_fd_sc_hd__ss_100C_1v60.lib"
+set list_of_lib_files(12) "sky130_fd_sc_hd__ss_n40C_1v28.lib"
+set list_of_lib_files(13) "sky130_fd_sc_hd__ss_n40C_1v35.lib"
+set list_of_lib_files(14) "sky130_fd_sc_hd__ss_n40C_1v40.lib"
+set list_of_lib_files(15) "sky130_fd_sc_hd__ss_n40C_1v44.lib"
+set list_of_lib_files(16) "sky130_fd_sc_hd__ss_n40C_1v60.lib"
+set list_of_lib_files(17) "sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part1"
+set list_of_lib_files(18) "sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part2"
+set list_of_lib_files(19) "sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part3"
+set list_of_lib_files(20) "sky130_fd_sc_hd__ss_n40C_1v76.lib"
+set list_of_lib_files(21) "sky130_fd_sc_hd__tt_025C_1v80.lib"
+set list_of_lib_files(22) "sky130_fd_sc_hd__tt_100C_1v80.lib"
 
+for {set i 1} {$i <= [array size list_of_lib_files]} {incr i} {
+read_liberty ./timing_libs/$list_of_lib_files($i)
+read_verilog ../output/synth/vsdbabysoc.synth.v
+link_design vsdbabysoc
+read_sdc ./sdc/vsdbabysoc_synthesis.sdc
+check_setup -verbose
+report_checks -path_delay min_max -fields {nets cap slew input_pins fanout} -digits {4} > ./sta_output/min_max_$list_of_lib_files($i).txt
+
+}
+```
+
+![image](https://github.com/user-attachments/assets/70b2ab31-1d3c-4ac1-b108-0c4f7d1067e4)
+
+![image](https://github.com/user-attachments/assets/e5cb8379-d9e2-48eb-82c5-3c3dcdd4295c)
+
+#### Run the following commands:
+```c
+cd VSDBabySoC/src
+sta
+source sta_across_pvt.tcl
+```
+
+![image](https://github.com/user-attachments/assets/bdd8b6d8-9747-47bd-aeb1-bf5e0241624b)
+
+#### Table
+
+![image](https://github.com/user-attachments/assets/1f7f55bb-09a5-4cfa-ab6a-3ea0c2daa92c)
+
+#### Graphs
+- Worst Setup Slack
+![image](https://github.com/user-attachments/assets/55f7e65d-bb56-4df6-8069-d67471e9b312)
+
+- Worst Hold Slack
+![image](https://github.com/user-attachments/assets/3f6cc9a2-8e80-4d97-891a-c555e68ca417)
 
