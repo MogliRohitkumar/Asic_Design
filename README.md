@@ -3031,12 +3031,49 @@ source sta_across_pvt.tcl
 
 ![image](https://github.com/user-attachments/assets/95970273-1ed8-4637-a989-3c7c3531d941)
 
+## LAB - 12
+### Advanced Physical Design using OpenLane using Sky130 :
+#### OpenLane Directory Structure
 
+```c
+├── OpenLane             -> Main directory to invoke tools (run docker first)
+│   ├── designs          -> Holds all design files for the flow
+│   │   ├── picorv32a    -> Example design used in workshops or tutorials
+│   │   ├── ...          -> Additional designs
+├── pdks                 -> Stores PDK-related files, supporting open-source tools
+│   ├── skywater-pdk     -> Contains the Skywater 130nm PDK
+│   ├── open-pdks        -> Scripts to adapt commercial PDKs for open-source tools
+│   ├── sky130A          -> Variant of PDK with open-source compatibility
+│   │   ├── libs.ref     -> Node-specific files (e.g., timing libraries, cell LEF files)
+│   │   ├── libs.tech    -> Tool-specific files for KLayout, Netgen, Magic, etc.
+```
 
+```c
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+run_synthesis
+```
+![image](https://github.com/user-attachments/assets/73dbbc8c-ccbf-4c58-84b2-6fc592828447)
 
+```c
+cd designs/picorv32a/runs/11-11_21-35/results/synthesis/
+gedit picorv32a.synthesis.v
+```
+![image](https://github.com/user-attachments/assets/dd0b5985-1357-418c-8490-e44a13078d89)
 
+![image](https://github.com/user-attachments/assets/833e6dfb-9faa-45fc-aa3a-e3d1c89f309c)
 
+```c
+cd ../..
+cd reports/synthesis
+gedit 1-yosys_4.stat.rpt
+```
+![image](https://github.com/user-attachments/assets/8b104d68-9dfc-43cb-b4e6-499fb1f4811b)
 
+![image](https://github.com/user-attachments/assets/621c7bce-ed55-4a93-a628-bd73aecc2448)
 
 
 
