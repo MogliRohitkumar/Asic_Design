@@ -3153,10 +3153,11 @@ gedit 1-yosys_4.stat.rpt
 
 ```
 
-
-
-
-
+```c
+Flop ratio = Number of D Flip flops = 1613  = 0.1084
+             ______________________   _____
+             Total Number of cells    14876
+```
 
 
 
