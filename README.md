@@ -3646,7 +3646,7 @@ save sky130_rohinv.mag
 Now, open it by using the following commands:
 
 ```
-magic -T sky130A.tech sky130_karinv.mag &
+magic -T sky130A.tech sky130_rohinv.mag &
 ```
 
 ![image](https://github.com/user-attachments/assets/d7829fd9-6b8d-4d08-ad87-1293c02e4f95)
@@ -3809,7 +3809,7 @@ Go, to `Desktop/work/tools/openlane_working_dir/openlane` and create a file `pre
 set_cmd_units -time ns -capacitance pF -current mA -voltage V -resistance kOhm -distance um
 read_liberty -max /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib
 read_liberty -min /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib
-read_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_08-51/results/synthesis/picorv32a.synthesis.v
+read_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_15-36/results/synthesis/picorv32a.synthesis.v
 link_design picorv32a
 read_sdc /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/my_base.sdc
 report_checks -path_delay min_max -fields {slew trans net cap input_pin}
@@ -3882,7 +3882,7 @@ Go to new terminal and run the follwoing commands:
 cd Desktop/work/tools/openlane_working_dir/openlane
 docker
 ./flow.tcl -interactive
-prep -design picorv32a -tag 13-11_08-51 -overwrite
+prep -design picorv32a -tag 13-11_15-36 -overwrite
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
 add_lefs -src $lefs
 set ::env(SYNTH_SIZING) 1
@@ -3893,6 +3893,157 @@ run_synthesis
 
 ![image](https://github.com/user-attachments/assets/8d57a5eb-7671-4e79-9821-98880b38c846)
 
+Commands to run STA:
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+sta pre_sta.conf
+```
+![image](https://github.com/user-attachments/assets/4a8e225d-0873-4161-86be-d548a2304db2)
+
+![image](https://github.com/user-attachments/assets/b89aa127-fec6-4f20-a269-db70873dd9f5)
+
+![image](https://github.com/user-attachments/assets/f5efdf07-c1e0-45ab-a6d2-fdb7bac19fe7)
+
+### Basic Timing ECO (Engineering Change Order)
+In this ECO, a NOR gate with a drive strength of 2 was driving five fanouts, causing a timing issue. Adjustments were made to improve timing by replacing the cell:
+
+```
+report_net -connections _13111_
+replace_cell _16171_ sky130_fd_sc_hd__nor3_2
+report_checks -fields {net cap slew input_pins} -digits 4
+```
+![image](https://github.com/user-attachments/assets/f7514979-333b-4f9e-91cd-ab726086ee52)
+
+### Clock Tree Synthesis (CTS) and Signal Integrity
+CTS organizes the clock distribution network for optimal timing across the design. Techniques vary by design requirements:
+
+- Balanced Tree CTS: Binary-like structure for minimal clock skew.
+- H-Tree CTS: H-shaped structure, good for large designs.
+- Star CTS: Centralized clock distribution, reducing skew.
+- Global-Local CTS: Combines star and tree for scalable distribution.
+- Mesh CTS: Uses a grid pattern, balancing simplicity and skew.
+- Adaptive CTS: Adjusts dynamically, ideal for complex design
+
+![image](https://github.com/user-attachments/assets/615cdb4f-b0ba-4e2d-8915-dcb8eaa26674)
+
+Crosstalk and Clock Net Shielding
+
+- Crosstalk: Signal interference due to electromagnetic coupling. Mitigated by optimized layout and shielding.
+- Clock Net Shielding: Prevents glitches by isolating clock nets with shields tied to power or ground. Shielding reduces interference and maintains signal integrity.
+
+### Inserting Updated Netlist in PnR Flow
+
+Replace the synthesis netlist with the updated one, making a backup first:
+```bash
+	cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_21-09/results/synthesis/
+	cp picorv32a.synthesis.v picorv32a.synthesis_old.v
+	write_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_15-36/results/synthesis/picorv32a.synthesis.v
+```
+### Running CTS and Post-CTS Timing Analysis
+```
+ cd Desktop/work/tools/openlane_working_dir/openlane
+ docker
+ ./flow.tcl -interactive
+ prep -design picorv32a -tag 13-11_21-09 -overwrite
+ set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+ add_lefs -src $lefs
+ set ::env(SYNTH_STRATEGY) "DELAY 3"
+ set ::env(SYNTH_SIZING) 1
+ run_synthesis
+ init_floorplan
+ place_io
+ tap_decap_or
+ run_placement
+ run_cts
+```
+
+![image](https://github.com/user-attachments/assets/1106f18d-abcc-4216-9120-9c9d5ceec605)
 
 
+![image](https://github.com/user-attachments/assets/082d1723-d2c2-4eb2-afb2-edb664adf338)
 
+### Setup Real Clocks in STA
+
+```
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/13-11_21-09/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/13-11_21-09/results/cts/picorv32a.cts.def
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/13-11_21-09/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+exit
+```
+![image](https://github.com/user-attachments/assets/a16cf49c-06fb-4cd6-91bf-1c0f4806cffe)
+
+![image](https://github.com/user-attachments/assets/aa59a816-6647-4c87-bced-ede861eaf6d7)
+
+### Clock Buffer List Modification
+
+```
+ echo $::env(CTS_CLK_BUFFER_LIST)
+ set ::env(CTS_CLK_BUFFER_LIST) [lreplace $::env(CTS_CLK_BUFFER_LIST) 0 0]
+ echo $::env(CTS_CLK_BUFFER_LIST)
+ echo $::env(CURRENT_DEF)
+ set ::env(CURRENT_DEF) /openLANE_flow/designs/picorv32a/runs/13-11_21-09/results/placement/picorv32a.placement.def
+ run_cts
+ echo $::env(CTS_CLK_BUFFER_LIST)
+ openroad
+ read_lef /openLANE_flow/designs/picorv32a/runs/13-11_21-09/tmp/merged.lef
+ read_def /openLANE_flow/designs/picorv32a/runs/13-11_21-09/results/cts/picorv32a.cts.def
+ write_db pico_cts1.db
+ read_db pico_cts.db
+ read_verilog /openLANE_flow/designs/picorv32a/runs/13-11_21-09/results/synthesis/picorv32a.synthesis_cts.v
+ read_liberty $::env(LIB_SYNTH_COMPLETE)
+ link_design picorv32a
+ read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+ set_propagated_clock [all_clocks]
+ report_checks -path_delay min_max -fields {slew transd net cap input_pins} -format full_clock_expanded -digits 4
+ report_clock_skew -hold
+ report_clock_skew -setup
+ exit
+ echo $::env(CTS_CLK_BUFFER_LIST)
+ set ::env(CTS_CLK_BUFFER_LIST) [linsert $::env(CTS_CLK_BUFFER_LIST) 0 sky130_fd_sc_hd__clkbuf_1]
+ echo $::env(CTS_CLK_BUFFER_LIST)
+```
+
+![image](https://github.com/user-attachments/assets/f8e5f570-7257-4d5f-bbe4-87a12a1a7dcf)
+
+![image](https://github.com/user-attachments/assets/80528a36-d61d-4736-89d1-4ec6a2494845)
+
+![image](https://github.com/user-attachments/assets/fa2d619d-8be8-4cf8-9a52-e7aafc160f37)
+
+### DAY-5
+#### Final steps for RTL2GDS using tritonRoute and openSTA
+
+#### Perform generation of Power Distribution Network (PDN) and explore the PDN layout.
+```
+
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+set ::env(SYNTH_SIZING) 1
+run_synthesis
+init_floorplan
+place_io
+tap_decap_or
+run_placement
+run_cts
+gen_pdn
+
+```
+![image](https://github.com/user-attachments/assets/58d4adc5-1a8a-4c04-927b-795bf4ce86a6)
+
+![image](https://github.com/user-attachments/assets/0a5d1cba-4e67-467a-b779-97cd7330070e)
+
+![image](https://github.com/user-attachments/assets/39f394c6-5cb4-476e-8b03-04e58e469c20)
