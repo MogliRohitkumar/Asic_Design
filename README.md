@@ -3127,7 +3127,7 @@ The compiler produces instructions specific to the architecture, and the assembl
 ---
 #### OpenLane Directory Structure
 
-```c
+```
 ├── OpenLane             -> Main directory to invoke tools (run docker first)
 │   ├── designs          -> Holds all design files for the flow
 │   │   ├── picorv32a    -> Example design used in workshops or tutorials
@@ -3140,7 +3140,7 @@ The compiler produces instructions specific to the architecture, and the assembl
 │   │   ├── libs.tech    -> Tool-specific files for KLayout, Netgen, Magic, etc.
 ```
 
-```c
+```
 cd Desktop/work/tools/openlane_working_dir/openlane
 docker
 ./flow.tcl -interactive
@@ -3150,7 +3150,7 @@ run_synthesis
 ```
 ![image](https://github.com/user-attachments/assets/73dbbc8c-ccbf-4c58-84b2-6fc592828447)
 
-```c
+```
 cd designs/picorv32a/runs/11-11_21-35/results/synthesis/
 gedit picorv32a.synthesis.v
 ```
@@ -3158,7 +3158,7 @@ gedit picorv32a.synthesis.v
 
 ![image](https://github.com/user-attachments/assets/833e6dfb-9faa-45fc-aa3a-e3d1c89f309c)
 
-```c
+```
 cd ../..
 cd reports/synthesis
 gedit 1-yosys_4.stat.rpt
@@ -3168,7 +3168,7 @@ gedit 1-yosys_4.stat.rpt
 ![image](https://github.com/user-attachments/assets/621c7bce-ed55-4a93-a628-bd73aecc2448)
 
 
-```c
+```
 
 28. Printing statistics.
 
@@ -3245,7 +3245,7 @@ gedit 1-yosys_4.stat.rpt
 
 ```
 
-```c
+```
 Flop ratio = Number of D Flip flops = 1613  = 0.1084
              ______________________   _____
              Total Number of cells    14876
@@ -3253,7 +3253,60 @@ Flop ratio = Number of D Flip flops = 1613  = 0.1084
 ### DAY-2
 #### Good floorplan vs bad floorplan and introduction to library cells
 
+#### Utilization Factor
+The utilization factor is an essential metric that compares the area occupied by the circuit (netlist) to the total core area of the chip. A higher utilization means more of the chip's area is being used effectively, but over-utilization can cause issues with routing and space for other necessary components.
 
+In ideal scenarios, we'd aim for a utilization factor of 1 (100%), but in reality, a range of **0.5 to 0.6** is preferred to account for buffer zones, routing channels, and the flexibility for adjustments.
+
+##### Utilization Factor Formula:
+$$
+\text{Utilization Factor} = \frac{\text{Area Occupied by Netlist}}{\text{Total Core Area}}
+$$
+
+#### Aspect Ratio
+The aspect ratio describes the shape of the chip, calculated as the ratio of height to width. An **aspect ratio of 1** gives a square shape, while other values result in a rectangular layout. The ideal aspect ratio is determined by factors like functionality, packaging, and manufacturing constraints.
+
+##### Aspect Ratio Formula:
+$$
+\text{Aspect Ratio} = \frac{\text{Height}}{\text{Width}}
+$$
+
+#### Pre-Placed Cells
+Pre-placed cells are essential functional blocks like memory units, custom processors, and analog circuits, which are manually positioned in fixed locations during the floorplanning stage. These blocks are **critical to the chip's operation** and cannot be moved during the placement and routing phases to ensure their functionality remains intact.
+
+#### Decoupling Capacitors
+- Purpose: These capacitors are placed near logic circuits to **smooth out power supply fluctuations** during high-speed switching.
+- Benefits:
+  - Minimize voltage fluctuations
+  - Reduce electromagnetic interference (EMI)
+  - Ensure reliable power delivery, especially to sensitive circuits
+
+#### Power Planning
+In a well-designed IC, power planning ensures that **VDD and VSS** are distributed evenly across the chip using a **power mesh**. The goal is to provide a stable power supply, minimize **voltage drops**, and optimize the overall **power efficiency** of the design. More power and ground points help reduce the likelihood of instability.
+
+#### Pin Placement
+The placement of **I/O pins** is crucial for the chip’s overall performance. A careful pin distribution minimizes signal integrity issues and heat buildup, which contributes to the chip’s stability and manufacturability.
+
+---
+
+### Floorplanning with OpenLANE
+
+#### Set Up OpenLANE
+First, navigate to the OpenLANE directory and initiate the interactive session:
+```bash
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+```
+
+#### Run OpenLANE Flow
+To prepare the design (`picorv32a`) and begin the floorplanning process, execute the following commands:
+```bash
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+run_synthesis
+run_floorplan
+```
 
 
 
