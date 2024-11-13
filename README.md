@@ -3272,20 +3272,20 @@ $$
 $$
 
 #### Pre-Placed Cells
-Pre-placed cells are essential functional blocks like memory units, custom processors, and analog circuits, which are manually positioned in fixed locations during the floorplanning stage. These blocks are **critical to the chip's operation** and cannot be moved during the placement and routing phases to ensure their functionality remains intact.
+Pre-placed cells are essential functional blocks like memory units, custom processors, and analog circuits, which are manually positioned in fixed locations during the floorplanning stage. These blocks are critical to the chip's operation and cannot be moved during the placement and routing phases to ensure their functionality remains intact.
 
 #### Decoupling Capacitors
-- Purpose: These capacitors are placed near logic circuits to **smooth out power supply fluctuations** during high-speed switching.
+- Purpose: These capacitors are placed near logic circuits to smooth out power supply fluctuations during high-speed switching.
 - Benefits:
   - Minimize voltage fluctuations
   - Reduce electromagnetic interference (EMI)
   - Ensure reliable power delivery, especially to sensitive circuits
 
 #### Power Planning
-In a well-designed IC, power planning ensures that **VDD and VSS** are distributed evenly across the chip using a **power mesh**. The goal is to provide a stable power supply, minimize **voltage drops**, and optimize the overall **power efficiency** of the design. More power and ground points help reduce the likelihood of instability.
+In a well-designed IC, power planning ensures that **VDD and VSS** are distributed evenly across the chip using a power mesh. The goal is to provide a stable power supply, minimize voltage drops, and optimize the overall power efficiency of the design. More power and ground points help reduce the likelihood of instability.
 
 #### Pin Placement
-The placement of **I/O pins** is crucial for the chip’s overall performance. A careful pin distribution minimizes signal integrity issues and heat buildup, which contributes to the chip’s stability and manufacturability.
+The placement of I/O pins is crucial for the chip’s overall performance. A careful pin distribution minimizes signal integrity issues and heat buildup, which contributes to the chip’s stability and manufacturability.
 
 ---
 
@@ -3293,14 +3293,14 @@ The placement of **I/O pins** is crucial for the chip’s overall performance. A
 
 #### Set Up OpenLANE
 First, navigate to the OpenLANE directory and initiate the interactive session:
-```bash
+```
 cd Desktop/work/tools/openlane_working_dir/openlane
 docker
 ```
 
 #### Run OpenLANE Flow
 To prepare the design (`picorv32a`) and begin the floorplanning process, execute the following commands:
-```bash
+```
 ./flow.tcl -interactive
 package require openlane 0.9
 prep -design picorv32a
