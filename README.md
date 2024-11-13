@@ -3250,6 +3250,9 @@ Flop ratio = Number of D Flip flops = 1613  = 0.1084
              ______________________   _____
              Total Number of cells    14876
 ```
+### DAY-2
+#### Good floorplan vs bad floorplan and introduction to library cells
+
 
 
 
