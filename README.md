@@ -3417,3 +3417,66 @@ $$
 $$
 \text{Rise Transition Time} = \text{time(slew-high-rise-thr)} - \text{time(slew-low-rise-thr)}
 $$
+
+### DAY-3
+#### Design library cell using Magic Layout and ngspice characterization
+
+#### CMOS Inverter NGSPICE Simulations
+
+#### SPICE Deck for a CMOS Inverter Simulation
+
+1. **Netlist Creation**: Define a netlist for the CMOS inverter circuit, labeling nodes clearly (e.g., `input`, `output`, `ground`, and `supply`) for easier identification during SPICE simulation.
+
+2. **Device Sizing**: Define the Width-to-Length (W/L) ratios for the PMOS and NMOS transistors. Typically, the PMOS width is 2x to 3x the NMOS width for balanced drive strength.
+
+3. **Voltage Levels**: Set gate and supply voltages in multiples of the transistor length.
+
+4. **Node Naming**: Assign names (e.g., `VDD`, `GND`, `IN`, `OUT`) to nodes around each component in the SPICE netlist for easier reference.
+
+   <img width="953" alt="Screenshot 2024-11-12 at 11 23 10 PM" src="https://github.com/user-attachments/assets/cbd5664c-8342-4f0c-9cc9-1320c3d1ca68">
+
+
+5. **Simulation Commands**: For transient analysis, use:
+   ``` 
+   source [filename].cir 
+   run 
+   setplot 
+   dc1 
+   plot out vs in 
+   ```
+
+   <img width="938" alt="Screenshot 2024-11-12 at 11 23 32 PM" src="https://github.com/user-attachments/assets/4339530d-407c-4be8-a2de-ecdac84d3523">
+
+#### Simulation and Analysis
+
+- **Switching Threshold (Vm)**: Vm is the input voltage at which the inverter output switches between logic levels. For equal PMOS/NMOS sizes, Vm is around VDD/2. Adjusting PMOS or NMOS sizes shifts Vm higher or lower.
+
+- **SPICE Command for Threshold Calculation**:
+   ``` 
+   Vin in 0 2.5 
+   .op 
+   .dc Vin 0 2.5 0.05 
+   ```
+
+    <img width="950" alt="Screenshot 2024-11-12 at 11 23 49 PM" src="https://github.com/user-attachments/assets/09eb989c-2a66-4225-b15a-2ded2d9299ee">
+
+
+- **Transient Analysis for Propagation Delay**: SPICE command for pulse input:
+   ``` 
+   Vin in 0 0 pulse 0 2.5 0 10p 10p 1n 2n 
+   .op 
+   .tran 10p 4n 
+   ```
+
+    <img width="884" alt="Screenshot 2024-11-12 at 11 28 02 PM" src="https://github.com/user-attachments/assets/4f45f9d0-43ab-494e-8e18-c775f27509ae">
+
+#### Cloning the Custom Inverter Layout
+
+1. Clone the inverter:
+   ``` 
+   cd Desktop/work/tools/openlane_working_dir/openlane 
+   git clone https://github.com/nickson-jose/vsdstdcelldesign 
+   cd vsdstdcelldesign 
+   cp /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech . 
+   magic -T sky130A.tech sky130_inv.mag & 
+   ```
