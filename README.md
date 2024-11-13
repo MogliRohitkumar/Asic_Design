@@ -3151,21 +3151,21 @@ run_synthesis
 ![image](https://github.com/user-attachments/assets/841409d6-3de4-4056-8fba-467edc380dcf)
 
 ```
-cd designs/picorv32a/runs/11-11_21-35/results/synthesis/
+cd designs/picorv32a/runs/13-11_15-22/results/synthesis/
 gedit picorv32a.synthesis.v
 ```
-![image](https://github.com/user-attachments/assets/dd0b5985-1357-418c-8490-e44a13078d89)
+![image](https://github.com/user-attachments/assets/139e6608-613c-42ca-b1e5-bfa8c4860b36)
 
-![image](https://github.com/user-attachments/assets/833e6dfb-9faa-45fc-aa3a-e3d1c89f309c)
+![image](https://github.com/user-attachments/assets/e5c61c70-d807-4cd6-827b-03d1957921fb)
 
 ```
 cd ../..
 cd reports/synthesis
 gedit 1-yosys_4.stat.rpt
 ```
-![image](https://github.com/user-attachments/assets/139e6608-613c-42ca-b1e5-bfa8c4860b36)
+![image](https://github.com/user-attachments/assets/bb04839e-3462-4b3d-81b1-8b1403f9eb33)
 
-![image](https://github.com/user-attachments/assets/e5c61c70-d807-4cd6-827b-03d1957921fb)
+![image](https://github.com/user-attachments/assets/b206ccc7-84a8-495e-b89c-937f3130b3ae)
 
 ```
 
@@ -3306,6 +3306,114 @@ prep -design picorv32a
 run_synthesis
 run_floorplan
 ```
+![image](https://github.com/user-attachments/assets/e80d9a96-460a-4313-bcc0-0aba6aeb5eba)
+
+![image](https://github.com/user-attachments/assets/ca1a2f85-5a4d-412b-97f6-dabaf6853819)
+
+Then, in a new terminal, access the floorplan file as follows:
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_15-36/results/floorplan
+gedit picorv32a.floorplan.def
+```
+![image](https://github.com/user-attachments/assets/a068eee2-106a-47e4-af2c-1bb0061c5077)
+
+According to the floorplan definitions:
+- 1000 Unit Distance = 1 Micron
+- Die width in unit distance = 660685−0 = 660685
+- Die height in unit distance = 671405−0 = 671405
+- Width in microns = 660685 / 1000 = 660.685 Microns
+- Height in microns = 671405 / 1000 = 671.405 Microns
+- Die area in microns² = 660.685 × 671.405 = 443587.212425 Microns²
+
+#### View the floorplan in Magic:
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_15-36/results/floorplan/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
+```
+
+![image](https://github.com/user-attachments/assets/745e4104-67be-45a8-8e98-df32055d0fd8)
 
 
+#### Decap and Tap Cells:
+- Decap cells and tap cells are placed to manage power delivery and maintain electrical connectivity across the chip.
 
+![image](https://github.com/user-attachments/assets/32e50637-dccb-4e8b-90c0-b39ce5a02fbf)
+
+#### Unplaced Standard Cells at Origin
+
+![image](https://github.com/user-attachments/assets/4ecd284b-438f-418a-bc84-8cc86f043f2c)
+
+```
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+run_synthesis
+run_floorplan
+run_placement
+```
+
+![image](https://github.com/user-attachments/assets/693754d6-b32f-401f-a7d4-0f405f42bba4)
+
+#### View the placement in Magic with:
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_15-36/results/placement/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
+![image](https://github.com/user-attachments/assets/d7750375-76aa-4848-b354-a80b0080672e)
+
+![image](https://github.com/user-attachments/assets/31d6150a-5c61-4346-aeda-971baf0ea096)
+
+### Cell Design and Characterization Flow
+#### Library Cells
+- A library contains cells that define different functionalities, sizes, and thresholds. It is crucial for creating the building blocks of an IC.
+
+#### Design Flow:
+Inputs: PDKs, SPICE models, DRC, LVS, and user-defined specifications.
+Steps:
+- Circuit design
+- Layout design
+- Parasitic extraction
+- Characterization (timing, noise, and power)
+Outputs:
+CDL (Circuit Description Language), LEF, GDSII, SPICE netlist, and various characterization files like .lib for timing, noise, and power.
+
+### Standard Cell Characterization Flow
+#### Steps in Characterization:
+- Load Models and Tech Files: These provide process-specific details.
+- Extract Spice Netlist: Extract the circuit netlist for analysis.
+- Characterization with GUNA: Using characterization software like GUNA, the following models are generated:
+	* Timing Models
+ 	* Power Models
+  	* Noise Models
+
+### Timing Parameters
+| Timing Parameter         | Value         |
+|------------------------------|--------------------|
+| Slew Low Rise Threshold  | 20%                |
+| Slew High Rise Threshold  | 80%                |
+| Slew Low Fall Threshold   | 20%                |
+| Slew High Fall Threshold  | 80%                |
+| Input Rise Threshold      | 50%                |
+| Input Fall Threshold      | 50%                |
+| Output Rise Threshold     | 50%                |
+| Output Fall Threshold     | 50%                |
+
+### Propagation Delay:
+Propagation delay is the time it takes for an input signal to propagate and affect the output signal.
+
+$$
+\text{Rise Delay} = \text{time(out-fall-thr)} - \text{time(in-rise-thr)}
+$$
+
+### Transition Time:
+Transition time is the time taken for a signal to change between logic levels. This is typically measured between 10% and 90% or 20% and 80% of the signal’s swing.
+
+$$
+\text{Fall Transition Time} = \text{time(slew-high-fall-thr)} - \text{time(slew-low-fall-thr)}
+$$
+
+$$
+\text{Rise Transition Time} = \text{time(slew-high-rise-thr)} - \text{time(slew-low-rise-thr)}
+$$
