@@ -4047,3 +4047,95 @@ gen_pdn
 ![image](https://github.com/user-attachments/assets/0a5d1cba-4e67-467a-b779-97cd7330070e)
 
 ![image](https://github.com/user-attachments/assets/39f394c6-5cb4-476e-8b03-04e58e469c20)
+
+![image](https://github.com/user-attachments/assets/c1ae2d86-25dc-49c8-b172-a2e13052fdcc)
+
+![image](https://github.com/user-attachments/assets/0a816c54-bd79-4a11-8e1b-04bf00323479)
+
+### Perfrom detailed routing using TritonRoute and explore the routed layout.
+```
+echo $::env(CURRENT_DEF)
+echo $::env(ROUTING_STRATEGY)
+run_routing
+```
+![image](https://github.com/user-attachments/assets/e2d883e8-cfb2-4a57-878e-852efb7368ac)
+
+![image](https://github.com/user-attachments/assets/46172b7a-9575-4a38-9bf2-7a02a678a9dd)
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_22-20/results/routing/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.def &
+```
+![image](https://github.com/user-attachments/assets/bfb51adc-5b69-4e64-bc02-adc4e6d7082e)
+
+![image](https://github.com/user-attachments/assets/0dfeef56-eeed-40c0-abb1-511ee55159ec)
+
+![image](https://github.com/user-attachments/assets/60b6dbd4-3c8c-4bbb-8510-5c3671c19a88)
+
+##### TritonRoute's Routing Features:
+
+1. **Intra-layer Routing**: Within a single metal layer, routing is done in parallel.
+2. **Inter-layer Routing**: Conducted sequentially across layers, ensuring alignment with LEF-defined directions (e.g., met1 horizontal, met2 vertical).
+3. **Route Guides**: Global route guides provide an initial path outline, aiding TritonRoute in detailed routing with minimized conflicts and enhanced connectivity.
+4. **Inter-guide Connectivity**: TritonRoute maintains signal flow across adjacent guides, reducing gaps for improved design continuity.
+
+
+![image](https://github.com/user-attachments/assets/19fcc3e8-3c51-4fb0-a56e-b5e677d0097f)
+
+![image](https://github.com/user-attachments/assets/8e9f3c3d-d1bd-4b00-9292-7b45fa06c42c)
+
+![image](https://github.com/user-attachments/assets/d939afa4-cc41-4f08-a15e-8f7b809b6adc)
+
+![image](https://github.com/user-attachments/assets/a0b77e6a-6cf5-45de-9116-182cbe37a091)
+
+![image](https://github.com/user-attachments/assets/45964f31-b0e5-4539-990f-09370dffe7ec)
+
+##### Routing Topology Algorithms
+
+Routing topology algorithms define connection paths between pins, optimizing for minimal path cost and connectivity efficiency.
+
+![image](https://github.com/user-attachments/assets/15c75c7f-a8b6-47a0-9dd0-529f5af242c1)
+
+---
+
+#### SPEF Extraction for Parasitic Analysis
+
+For Post-Route parasitic extraction using SPEF, navigate to the `spef_extractor` directory and run:
+
+```bash
+cd Desktop/work/tools/openlane_working_dir/openlane/scripts/spef_extractor
+python3 main.py -l /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_22-20/tmp/merged.lef -d /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_22-20/results/routing/picorv32a.def
+```
+
+![image](https://github.com/user-attachments/assets/3a2b87d6-7c71-4ef6-9570-78e2b61c2422)
+
+
+This extracts parasitics to aid in timing analysis.
+
+---
+
+#### Post-Route Timing Analysis with OpenSTA
+
+To perform timing analysis on the routed design with extracted parasitics, use the following sequence in OpenSTA:
+
+```bash
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/13-11_22-20/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/13-11_22-20/results/routing/picorv32a.def
+write_db pico_route.db
+read_db pico_route.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/13-11_22-20/results/synthesis/picorv32a.synthesis_preroute.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+read_spef /openLANE_flow/designs/picorv32a/runs/13-11_22-20/results/routing/picorv32a.spef
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+exit
+```
+![Untitled](https://github.com/user-attachments/assets/65ebae68-2ba2-40bb-b249-f2d0c759c8ea)
+
+![image](https://github.com/user-attachments/assets/f298fa3c-f3a0-4c72-8bd5-1049e76e7c4c)
+
+![image](https://github.com/user-attachments/assets/bcc7463e-9ab7-4fcd-89e2-de6608351181)
+
+
