@@ -3148,7 +3148,7 @@ package require openlane 0.9
 prep -design picorv32a
 run_synthesis
 ```
-![image](https://github.com/user-attachments/assets/73dbbc8c-ccbf-4c58-84b2-6fc592828447)
+![image](https://github.com/user-attachments/assets/841409d6-3de4-4056-8fba-467edc380dcf)
 
 ```
 cd designs/picorv32a/runs/11-11_21-35/results/synthesis/
@@ -3163,10 +3163,9 @@ cd ../..
 cd reports/synthesis
 gedit 1-yosys_4.stat.rpt
 ```
-![image](https://github.com/user-attachments/assets/8b104d68-9dfc-43cb-b4e6-499fb1f4811b)
+![image](https://github.com/user-attachments/assets/139e6608-613c-42ca-b1e5-bfa8c4860b36)
 
-![image](https://github.com/user-attachments/assets/621c7bce-ed55-4a93-a628-bd73aecc2448)
-
+![image](https://github.com/user-attachments/assets/e5c61c70-d807-4cd6-827b-03d1957921fb)
 
 ```
 
@@ -3264,7 +3263,7 @@ $$
 $$
 
 #### Aspect Ratio
-The aspect ratio describes the shape of the chip, calculated as the ratio of height to width. An **aspect ratio of 1** gives a square shape, while other values result in a rectangular layout. The ideal aspect ratio is determined by factors like functionality, packaging, and manufacturing constraints.
+The aspect ratio describes the shape of the chip, calculated as the height-to-width ratio. An **aspect ratio of 1** gives a square shape, while other values result in a rectangular layout. Factors like functionality, packaging, and manufacturing constraints determine the ideal aspect ratio.
 
 ##### Aspect Ratio Formula:
 $$
@@ -3272,7 +3271,7 @@ $$
 $$
 
 #### Pre-Placed Cells
-Pre-placed cells are essential functional blocks like memory units, custom processors, and analog circuits, which are manually positioned in fixed locations during the floorplanning stage. These blocks are critical to the chip's operation and cannot be moved during the placement and routing phases to ensure their functionality remains intact.
+Pre-placed cells are essential functional blocks like memory units, custom processors, and analog circuits, manually positioned in fixed locations during the floorplanning stage. These blocks are critical to the chip's operation and cannot be moved during the placement and routing phases to ensure their functionality remains intact.
 
 #### Decoupling Capacitors
 - Purpose: These capacitors are placed near logic circuits to smooth out power supply fluctuations during high-speed switching.
