@@ -3480,3 +3480,139 @@ $$
    cp /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech . 
    magic -T sky130A.tech sky130_inv.mag & 
    ```
+![image](https://github.com/user-attachments/assets/c36565c9-520a-4f81-83a5-921e84ba350c)
+2. Inverter Layout and CMOS Fabrication Process
+#### CMOS Fabrication Process (16-Mask Method)
+The CMOS fabrication process is a series of precise, photolithographic and chemical steps to create integrated circuits on a silicon wafer. This process includes multiple layers and utilizes 16 photomasks to define and protect specific areas of the wafer at various stages. Each step in this process is carefully controlled to ensure that the resulting chips are reliable and functionally correct.
+
+- Substrate Preparation: Start with a cleaned, polished silicon wafer as the base.
+- N-Well Formation: Form N-well regions in the p-type substrate using ion implantation with phosphorus.
+- P-Well Formation: Create P-well regions in n-type areas by implanting boron.
+- Gate Oxide Deposition: Deposit a thin silicon dioxide layer as insulation between the gate and channel.
+- Polysilicon Deposition: Apply a polysilicon layer to serve as the gate electrode.
+- Polysilicon Masking and Etching: Mask and etch to shape polysilicon into gate structures.
+- N-Well Masking and Implantation: Define and implant N-well areas with phosphorus.
+- P-Well Masking and Implantation: Define and implant P-well areas with boron.
+- Source/Drain Implantation: Form source/drain regions by implanting dopants (e.g., arsenic for NMOS, boron for PMOS).
+- Gate Formation: Use a mask to define and etch the gate structure.
+- Source/Drain Masking and Etching: Etch to expose source/drain areas for further processing.
+- Contact/Via Formation: Etch holes to access source, drain, and gate regions for connections.
+- Metal Deposition: Deposit metal (e.g., aluminum or copper) to form interconnections.
+- Metal Masking and Etching: Mask and etch metal to create interconnect patterns.
+- Passivation Layer Deposition: Apply a protective silicon dioxide or nitride layer over the wafer.
+- Final Testing and Packaging: Test the wafer, separate functioning chips, and package for deployment.
+
+#### Identification of Transistors in the Inverter
+- In the Magic layout viewer, hover over the required transistor and press **S** to select it. In the Magic terminal, type **what** to get information about the component type.
+
+#### NMOS Transistor:
+![image](https://github.com/user-attachments/assets/fa61ca31-19ad-47f1-abe7-7e6c46f30777)
+
+#### PMOS Transistor:
+![image](https://github.com/user-attachments/assets/44554937-bda5-4638-b315-28de530ce517)
+
+#### Output Node - Y: ss
+![image](https://github.com/user-attachments/assets/035a63cd-9702-471a-9c89-b79af16eba9e)
+
+3. SPICE Extraction in Magic
+Run SPICE Extraction Commands: In Magic’s tkcon window:
+
+```
+extract all
+ext2spice cthresh 0 rthresh 0
+ext2spice
+```
+![image](https://github.com/user-attachments/assets/ba1ac73f-ac55-43f4-9cd3-0c12ef78fc41)
+
+View SPICE File: The extracted SPICE file (sky130_inv.spice) contains transistor models and capacitances.
+
+![image](https://github.com/user-attachments/assets/13bead44-f814-4bc4-b4e6-67f41c1d29b8)
+
+4. Transient Response Analysis
+It is 0.01 microns. This has to accordingly updated in the spice file.
+```
+* SPICE3 file created from sky130_inv.ext - technology: sky130A
+
+.option scale=0.01u
+
+.include ./libs/pshort.lib
+.include ./libs/nshort.lib
+
+// .subckt sky130_inv A Y VPWR VGND
+
+M1000 Y A VGND VGND nshort_model.0 w=35 l=23
++  ad=1.44n pd=0.152m as=1.37n ps=0.148m
+M1001 Y A VPWR VPWR pshort_model.0 w=37 l=23
++  ad=1.44n pd=0.152m as=1.52n ps=0.156m
+
+VDD VPWR 0 3.3V
+VSS VGND 0 0V
+Va A VGND PULSE(0V 3.3V 0 0.1ns 0.1ns 2ns 4ns)
+
+C0 VPWR Y 0.117f
+C1 A Y 0.0754f
+C2 A VPWR 0.0774f
+C3 Y VGND 2f
+C4 A VGND 0.45f
+C5 VPWR VGND 0.781f
+// .ends
+
+
+.tran 1n 20n
+.control
+run
+.endc
+.end
+```
+Run the modified file in ngspice:
+
+```
+ngspice sky130_inv.spice
+```
+![image](https://github.com/user-attachments/assets/52764b2b-9128-4032-99b1-3945cb2a8ab0)
+
+### Plot the Waveform:
+
+```
+plot y vs time a
+```
+![image](https://github.com/user-attachments/assets/7655e404-9876-4541-bf83-933eebef316e)
+
+|Parameter           |Calculation
+|------------------------------|--------------------|
+| Rise Time  |  2.17897 ns - 2.12091 ns = 0.05776 ns    | 
+| Fall Time  | 4.06296 ns - 4.02074 ns = 0.04222 ns               |
+| Cell Rise Delay   |    2.20654 ns - 2.15001 ns = 0.05653 ns            |
+| Cell Fall Delay  |     4.07532 ns - 4.05 ns = 0.02532 ns         |
+
+5. DRC Rules in Magic
+- Download DRC Tests:
+```
+cd ~
+wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
+tar xfz drc_tests.tgz
+cd drc_tests
+gvim .magicrc
+```
+![image](https://github.com/user-attachments/assets/aff28136-82e9-4afc-9464-c6f7f8bbaaa4)
+
+![image](https://github.com/user-attachments/assets/9249d5f9-fdf7-4de5-ab65-4874a9b84cfb)
+- Here we can observe that there is a drc error. To fix this add the following commands to the sky130A.tech file.
+```
+spacing npres allpolynonres 480 touching_illegal \
+	"poly.resistor spacing to allpolynonres < %d (poly.9)"
+
+spacing xhrpoly,uhrpoly,xpc allpolynonres 480 touching_illegal \
+	"xhrpoly/uhrpoly resistor spacing to allpolynonres < %d (poly.9)"
+```
+![image](https://github.com/user-attachments/assets/9e5ff832-5ffa-4370-bbc9-189ebad1fd47)
+
+![image](https://github.com/user-attachments/assets/c08720b5-5442-4237-972e-960c4c425049)
+
+- Load and Check:
+```
+tech load sky130A.tech
+drc check
+drc why
+```
+<img width="805" alt="Screenshot 2024-11-13 at 12 38 16 AM" src="https://github.com/user-attachments/assets/ddccab54-9579-42a6-80e2-a4b74dc21eea">
