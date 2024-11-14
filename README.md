@@ -3780,7 +3780,10 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 
 Custom inverter inserted in placement def
 
-![image](https://github.com/user-attachments/assets/5ac8d3eb-34b2-459e-b3ae-19702c50490e)
+![image](https://github.com/user-attachments/assets/0a831743-7445-4673-bd61-204875075ded)
+
+![image](https://github.com/user-attachments/assets/8a82b2d0-2d17-432c-a299-fd98917a4b6f)
+
 
 **Timing analysis with ideal clocks using openSTA**
 
