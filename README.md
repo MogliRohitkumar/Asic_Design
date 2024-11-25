@@ -4142,12 +4142,16 @@ exit
 ![image](https://github.com/user-attachments/assets/bcc7463e-9ab7-4fcd-89e2-de6608351181)
 
 LAB-13
-
+Installing and setting up ORFS
+```
+git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
+cd OpenROAD-flow-scripts
+sudo ./setup.sh
+```
 ```
 ./build_openroad.sh --local
 ```
-
-
+Verify Installation
 ```
 source ./env.sh
 yosys -help
@@ -4164,3 +4168,81 @@ make gui_final
 ```
 
 ![image](https://github.com/user-attachments/assets/aa79fe5d-a0de-48b1-9a0b-a532e0751fcb)
+
+ORFS Directory Structure and File formats
+
+![image](https://github.com/user-attachments/assets/857e969a-0935-4c2c-9730-5393c4865a1a)
+
+```
+├── OpenROAD-flow-scripts             
+│   ├── docker           -> It has Docker based installation, run scripts and all saved here
+│   ├── docs             -> Documentation for OpenROAD or its flow scripts.  
+│   ├── flow             -> Files related to run RTL to GDS flow  
+|   ├── jenkins          -> It contains the regression test designed for each build update
+│   ├── tools            -> It contains all the required tools to run RTL to GDS flow
+│   ├── etc              -> Has the dependency installer script and other things
+│   ├── setup_env.sh     -> Its the source file to source all our OpenROAD rules to run the RTL to GDS flow
+```
+Now, go to flow directory
+
+![image](https://github.com/user-attachments/assets/ee70b00a-70d3-448b-882f-23bf2b31cc2c)
+
+```
+├── flow           
+│   ├── design           -> It has built-in examples from RTL to GDS flow across different technology nodes
+│   ├── makefile         -> The automated flow runs through makefile setup
+│   ├── platform         -> It has different technology note libraries, lef files, GDS etc 
+|   ├── tutorials        
+│   ├── util            
+│   ├── scripts             
+```
+Automated RTL2GDS Flow for VSDBabySoC:
+
+Initial Steps:
+
+We need to create a directory vsdbabysoc inside OpenROAD-flow-scripts/flow/designs/sky130hd
+Now copy the folders gds, include, lef and lib from the VSDBabySoC folder in your system into this directory.
+The gds folder would contain the files avsddac.gds and avsdpll.gds
+The include folder would contain the files sandpiper.vh, sandpiper_gen.vh, sp_default.vh and sp_verilog.vh
+The gds folder would contain the files avsddac.lef and avsdpll.lef
+The lib folder would contain the files avsddac.lib and avsdpll.lib
+Now copy the constraints file(vsdbabysoc_synthesis.sdc) from the VSDBabySoC folder in your system into this directory.
+Now copy the files(macro.cfg and pin_order.cfg) from the VSDBabySoC folder in your system into this directory.
+Now, create a macro.cfg file whose contents are shown below:
+
+Now go to terminal and run the following commands:
+
+```
+cd OpenROAD-flow-scripts
+source env.sh
+cd flow
+```
+
+Commands for synthesis:
+
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk synth
+```
+
+![image](https://github.com/user-attachments/assets/14861458-31f3-4062-9486-01dc7d4ef288)
+
+![image](https://github.com/user-attachments/assets/dd317914-081d-4003-bd0a-822e030e6bde)
+
+Synthesis netlist:
+
+![image](https://github.com/user-attachments/assets/b36c1310-81c3-44eb-bfea-2af973524727)
+
+Synthesis log:
+
+![image](https://github.com/user-attachments/assets/afee84cd-a688-411c-bee0-e790105a99a9)
+
+Synthesis Check:
+
+![image](https://github.com/user-attachments/assets/c4b2255b-2bfd-44dc-bf0a-21c26ec82785)
+
+Synthesis Stats:
+
+![image](https://github.com/user-attachments/assets/60ca54e7-f7b9-4b47-9207-711e92a81082)
+
+![image](https://github.com/user-attachments/assets/1011900e-7786-4ffa-aa8d-ef97558a3fcc)
+
