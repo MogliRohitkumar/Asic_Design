@@ -4141,4 +4141,26 @@ exit
 
 ![image](https://github.com/user-attachments/assets/bcc7463e-9ab7-4fcd-89e2-de6608351181)
 
+LAB-13
 
+```
+./build_openroad.sh --local
+```
+
+
+```
+source ./env.sh
+yosys -help
+openroad -help
+cd flow
+make
+```
+![image](https://github.com/user-attachments/assets/ddfb3cc4-8492-44bf-86c4-e83f3380487b)
+
+![image](https://github.com/user-attachments/assets/1e61da98-8054-406a-be18-80cd13332ae4)
+
+```
+make gui_final
+```
+
+![image](https://github.com/user-attachments/assets/aa79fe5d-a0de-48b1-9a0b-a532e0751fcb)
